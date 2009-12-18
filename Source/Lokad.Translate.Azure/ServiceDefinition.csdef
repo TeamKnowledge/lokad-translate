@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="Lokad.Translate.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
-  <WebRole name="Lokad.Translate" enableNativeCodeExecution="true">
-    <InputEndpoints>
+	<WebRole name="Lokad.Translate" enableNativeCodeExecution="true">
+		<InputEndpoints>
 			<!-- Must use port 80 for http and port 443 for https when running in the cloud -->
-      <InputEndpoint name="HttpIn" protocol="http" port="80" />
-    </InputEndpoints>
-    <ConfigurationSettings>
-      <!--<Setting name="DiagnosticsConnectionString" />-->
+			<InputEndpoint name="HttpIn" protocol="http" port="80" />
+		</InputEndpoints>
+		<ConfigurationSettings>
+			<!--<Setting name="DiagnosticsConnectionString" />-->
 			<Setting name="SqlConnectionString"/>
-    </ConfigurationSettings>
-  </WebRole>
+		</ConfigurationSettings>
+	</WebRole>
 	<WorkerRole name="Lokad.Translate.Worker" enableNativeCodeExecution="true">
 		<ConfigurationSettings>
 			<!--<Setting name="DiagnosticsConnectionString" />-->
