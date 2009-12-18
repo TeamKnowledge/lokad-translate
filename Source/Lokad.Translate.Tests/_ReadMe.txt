@@ -1,0 +1,1 @@
+﻿HACK: No tests have been setup for Lokad.Translate at this point.
