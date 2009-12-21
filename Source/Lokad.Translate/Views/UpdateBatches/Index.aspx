@@ -18,10 +18,10 @@
                 Translator
             </th>
             <th>
-                WordCount
+                Word Count
             </th>
             <th>
-				IsPaid
+				Is Paid
             </th>
         </tr>
 

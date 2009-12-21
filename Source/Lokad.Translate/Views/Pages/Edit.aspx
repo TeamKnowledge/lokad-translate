@@ -35,8 +35,8 @@
                 <%= Html.ValidationMessage("Url", "*") %>
             </p>
             <p>
-                <label for="IsIgnored">Is Ignored:</label>
-                <%= Html.CheckBox("IsIgnored", Model.IsIgnored) %>
+				<%= Html.CheckBox("IsIgnored", Model.IsIgnored) %>
+                <label for="IsIgnored" class="inline">Is Ignored</label>
                 <%= Html.ValidationMessage("IsIgnored", "*") %>
             </p>
             <p>

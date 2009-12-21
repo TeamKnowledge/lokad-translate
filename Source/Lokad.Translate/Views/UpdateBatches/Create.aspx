@@ -14,7 +14,7 @@
                 Translator
             </th>
             <th>
-                WordCount
+                Word Count
             </th>
             <th>
             </th>
