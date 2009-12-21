@@ -1,11 +1,11 @@
 ﻿/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
+The base color for this template is #E0E0E0. If you'd like
 to use a different color start by replacing all instances of
-#5c87b2 with your new color.
+#E0E0E0 with your new color.
 ----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
+    background-color: #E0E0E0;
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -15,21 +15,21 @@ body
 
 a:link
 {
-    color: #034af3;
+    color: #C7180F;
     text-decoration: underline;
 }
 a:visited
 {
-    color: #505abc;
+    color: #A0100D;
 }
 a:hover
 {
-    color: #1d60ff;
-    text-decoration: none;
+    color: #E80C00;
+    text-decoration: underline;
 }
 a:active
 {
-    color: #12eb87;
+    color: #E80C00;
 }
 
 p, ul
@@ -84,9 +84,6 @@ first child of the left and right table columns */
 page width. Or, you can specify an exact pixel width. */
 .page
 {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #header
@@ -94,17 +91,17 @@ page width. Or, you can specify an exact pixel width. */
     position: relative;
     margin-bottom: 0px;
     color: #000;
-    padding: 0;
+    padding: 8px 8px 0px 8px;
+    background-color: #AB1B11;
 }
 
 #header h1
 {
     font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
+    margin-top: 10;
     color: #fff;
     border: none;
-    line-height: 2em;
+    padding-left: 10px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 32px !important;
 }
@@ -131,8 +128,7 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    border-bottom: 1px #5C87B2 solid;
-    padding: 0 0 2px;
+    padding: 0px;
     position: relative;
     margin: 0;
     text-align: right;
@@ -160,7 +156,7 @@ ul#menu li a
     text-decoration: none;
     line-height: 2.8em;
     background-color: #e8eef4;
-    color: #034af3;
+    color: #C7180F;
 }
 
 ul#menu li a:hover
@@ -171,7 +167,7 @@ ul#menu li a:hover
 
 ul#menu li a:active
 {
-    background-color: #a6e2a6;
+    background-color: #FFDD8D;
     text-decoration: none;
 }
 
@@ -262,7 +258,7 @@ table th
 
 #menucontainer
 {
-    margin-top:40px;
+    margin-top: 20px;
 }
 
 div#title
@@ -277,7 +273,7 @@ div#title
     font-size:1.1em;
     display:block;
     text-align:right;
-    margin:10px;
+    margin:0px;
     color:White;
 }
 
