@@ -14,13 +14,22 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "Manager, User")]
     public class LangsController : Controller
     {
-		readonly LangRepository Repository = new LangRepository();
+		readonly ILangRepository Langs;
+
+		public LangsController()
+			: this(GlobalSetup.Container.Resolve<ILangRepository>())
+		{ }
+
+		public LangsController(ILangRepository langRepo)
+		{
+			Langs = langRepo;
+		}
 
         //
         // GET: /Langs/
         public ActionResult Index()
         {
-            return View(Repository.List());
+            return View(Langs.List());
         }
 
         //
@@ -42,7 +51,7 @@ namespace Lokad.Translate.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create([Bind(Exclude = "Id")] Lang lang)
         {
-			Repository.Create(lang);
+			Langs.Create(lang);
 			return RedirectToAction("Index");
         }
 
@@ -50,14 +59,14 @@ namespace Lokad.Translate.Controllers
         // GET: /Langs/Edit/5
         public ActionResult Edit(long id)
         {
-            return View(Repository.Edit(id));
+            return View(Langs.Edit(id));
         }
 
 		//
 		// GET: /Langs/Delete/5
 		public ActionResult Delete(long id)
 		{
-			Repository.Delete(id);
+			Langs.Delete(id);
 			return RedirectToAction("Index");
 		}
 
@@ -66,7 +75,7 @@ namespace Lokad.Translate.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(long id, Lang lang)
         {
-			Repository.Edit(id, lang);
+			Langs.Edit(id, lang);
 			return RedirectToAction("Index");
         }
     }

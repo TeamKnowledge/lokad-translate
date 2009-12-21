@@ -7,7 +7,7 @@ using NHibernate;
 
 namespace Lokad.Translate.Repositories
 {
-	public class LangRepository : BaseRepository
+	public class LangRepository : BaseRepository, ILangRepository
 	{
 		public LangRepository()
 		{

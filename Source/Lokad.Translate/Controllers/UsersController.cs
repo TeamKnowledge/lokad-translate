@@ -14,7 +14,16 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "Manager, User")]
     public class UsersController : Controller
     {
-		readonly UserRepository Users = new UserRepository();
+		readonly IUserRepository Users;
+
+		public UsersController()
+			: this(GlobalSetup.Container.Resolve<IUserRepository>())
+		{ }
+
+		public UsersController(IUserRepository userRepo)
+		{
+			Users = userRepo;
+		}
 
         //
         // GET: /Users/

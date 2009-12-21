@@ -13,7 +13,16 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "Manager, User")]
     public class RestRegexController : Controller
     {
-		readonly RestRegexRepository Regexes = new RestRegexRepository();
+		readonly IRestRegexRepository Regexes;
+
+		public RestRegexController()
+			: this(GlobalSetup.Container.Resolve<IRestRegexRepository>())
+		{ }
+
+		public RestRegexController(IRestRegexRepository regexRepo)
+		{
+			Regexes = regexRepo;
+		}
 
         public ActionResult Index()
         {

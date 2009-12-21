@@ -12,14 +12,14 @@ namespace Lokad.Translate.BusinessLogic
 	/// and mapping updates.</summary>
 	public class PageProcessor
 	{
-		private readonly PageRepository Pages;
-		private readonly LangRepository Langs;
-		private readonly MappingRepository Mappings;
+		private readonly IPageRepository Pages;
+		private readonly ILangRepository Langs;
+		private readonly IMappingRepository Mappings;
 
 		public PageProcessor(
-			PageRepository pages,
-			LangRepository langs, 
-			MappingRepository mappings)
+			IPageRepository pages,
+			ILangRepository langs, 
+			IMappingRepository mappings)
 		{
 			Pages = pages;
 			Langs = langs;

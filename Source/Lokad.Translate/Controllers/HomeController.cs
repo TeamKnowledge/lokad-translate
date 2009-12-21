@@ -12,12 +12,27 @@ namespace Lokad.Translate.Controllers
 	[HandleError]
 	public class HomeController : Controller
 	{
-		// HACK: Inits would need to be migrated toward IoC
-		readonly UserRepository Users = new UserRepository();
-		readonly FeedRepository Feeds = new FeedRepository();
-		readonly PageRepository Pages = new PageRepository();
-		readonly LangRepository Langs = new LangRepository();
-		readonly MappingRepository Mappings = new MappingRepository();
+		readonly IUserRepository Users;
+		readonly IFeedRepository Feeds;
+		readonly IPageRepository Pages;
+		readonly ILangRepository Langs;
+		readonly IMappingRepository Mappings;
+
+		public HomeController()
+			: this(GlobalSetup.Container.Resolve<IUserRepository>(), GlobalSetup.Container.Resolve<IFeedRepository>(),
+				GlobalSetup.Container.Resolve<IPageRepository>(), GlobalSetup.Container.Resolve<ILangRepository>(),
+				GlobalSetup.Container.Resolve<IMappingRepository>())
+		{ }
+
+		public HomeController(IUserRepository userRepo, IFeedRepository feedRepo, IPageRepository pageRepo,
+			ILangRepository langRepo, IMappingRepository mappingRepo)
+		{
+			Users = userRepo;
+			Feeds = feedRepo;
+			Pages = pageRepo;
+			Langs = langRepo;
+			Mappings = mappingRepo;
+		}
 
 		public ActionResult Index()
 		{
@@ -34,8 +49,8 @@ namespace Lokad.Translate.Controllers
 		/// </summary>
 		public ActionResult Cron()
 		{
-			var feedProc = new FeedProcessor(Feeds, Pages);
-			var pageProc = new PageProcessor(Pages, Langs, Mappings);
+			var feedProc = GlobalSetup.Container.Resolve<FeedProcessor>();
+			var pageProc = GlobalSetup.Container.Resolve<PageProcessor>();
 
 			ViewData["PagesRefreshed"] = feedProc.ProcessAll();
 			ViewData["MappingsInserted"] = pageProc.ProcessAll();

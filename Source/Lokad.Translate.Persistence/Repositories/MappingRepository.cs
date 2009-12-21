@@ -9,7 +9,7 @@ using NHibernate.Transform;
 
 namespace Lokad.Translate.Repositories
 {
-	public class MappingRepository : BaseRepository
+	public class MappingRepository : BaseRepository, IMappingRepository
 	{
 		public MappingRepository()
 		{

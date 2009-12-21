@@ -13,7 +13,16 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "Manager, User")]
     public class UpdateBatchesController : Controller
     {
-		readonly UpdateBatchRepository Batches = new UpdateBatchRepository();
+		readonly IUpdateBatchRepository Batches;
+
+		public UpdateBatchesController()
+			: this(GlobalSetup.Container.Resolve<IUpdateBatchRepository>())
+		{ }
+
+		public UpdateBatchesController(IUpdateBatchRepository batchRepo)
+		{
+			Batches = batchRepo;
+		}
 
         //
         // GET: /UpdateBatches/

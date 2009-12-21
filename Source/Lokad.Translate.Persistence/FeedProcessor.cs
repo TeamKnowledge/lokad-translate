@@ -20,17 +20,20 @@ namespace Lokad.Translate.BusinessLogic
 			public DateTime PubDate { get; set; }
 		}
 
-		readonly FeedRepository Feeds;
-		readonly PageRepository Pages;
+		readonly IFeedRepository Feeds;
+		readonly IPageRepository Pages;
 
 		public FeedProcessor(
-			FeedRepository feeds, 
-			PageRepository pages)
+			IFeedRepository feeds, 
+			IPageRepository pages)
 		{
 			Feeds = feeds;
 			Pages = pages;
 		}
 
+		/// <summary>Retrieves all the udaptes and
+		/// inserts the new pages.</summary>
+		/// <returns>Number of updated pages.</returns>
 		public int ProcessAll()
 		{
 			var count = 0;

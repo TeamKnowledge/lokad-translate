@@ -8,7 +8,7 @@ using NHibernate.Criterion;
 
 namespace Lokad.Translate.Repositories
 {
-	public class PageRepository : BaseRepository
+	public class PageRepository : BaseRepository, IPageRepository
 	{
 		public PageRepository()
 		{

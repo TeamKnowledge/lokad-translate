@@ -6,7 +6,7 @@ using NHibernate.Criterion;
 
 namespace Lokad.Translate.Repositories
 {
-	public class RestRegexRepository : BaseRepository
+	public class RestRegexRepository : BaseRepository, IRestRegexRepository
 	{
 		public IList<RestRegex> List()
 		{

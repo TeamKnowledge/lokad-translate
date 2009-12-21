@@ -14,7 +14,16 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "Manager, User")]
     public class PagesController : Controller
     {
-		readonly PageRepository Pages = new PageRepository();
+		readonly IPageRepository Pages;
+
+		public PagesController()
+			: this(GlobalSetup.Container.Resolve<IPageRepository>())
+		{ }
+
+		public PagesController(IPageRepository pageRepo)
+		{
+			Pages = pageRepo;
+		}
 
         //
         // GET: /Pages/

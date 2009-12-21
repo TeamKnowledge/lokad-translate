@@ -15,11 +15,27 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "User")]
     public class MapsController : Controller
     {
-		readonly LangRepository Langs = new LangRepository();
-		readonly MappingRepository Mappings = new MappingRepository();
-		readonly UpdateRepository Updates = new UpdateRepository();
-		readonly UserRepository Users = new UserRepository();
-		readonly RestRegexRepository Regexes = new RestRegexRepository();
+		readonly ILangRepository Langs;
+		readonly IMappingRepository Mappings;
+		readonly IUpdateRepository Updates;
+		readonly IUserRepository Users;
+		readonly IRestRegexRepository Regexes;
+
+		public MapsController()
+			: this(GlobalSetup.Container.Resolve<ILangRepository>(), GlobalSetup.Container.Resolve<IMappingRepository>(),
+				GlobalSetup.Container.Resolve<IUpdateRepository>(), GlobalSetup.Container.Resolve<IUserRepository>(),
+				GlobalSetup.Container.Resolve<IRestRegexRepository>())
+		{ }
+
+		public MapsController(ILangRepository langRepo, IMappingRepository mappingRepo, IUpdateRepository updateRepo,
+			IUserRepository userRepo, IRestRegexRepository regexRepo)
+		{
+			Langs = langRepo;
+			Mappings = mappingRepo;
+			Updates = updateRepo;
+			Users = userRepo;
+			Regexes = regexRepo;
+		}
 
         //
         // GET: /Maps/

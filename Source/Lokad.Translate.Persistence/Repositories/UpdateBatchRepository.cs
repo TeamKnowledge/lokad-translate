@@ -8,7 +8,7 @@ using NHibernate.Criterion;
 
 namespace Lokad.Translate.Repositories
 {
-	public class UpdateBatchRepository : BaseRepository
+	public class UpdateBatchRepository : BaseRepository, IUpdateBatchRepository
 	{
 		public IList<UpdateBatch> List()
 		{

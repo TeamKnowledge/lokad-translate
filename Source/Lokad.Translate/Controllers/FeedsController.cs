@@ -15,9 +15,18 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "Manager")]
     public class FeedsController : Controller
     {
-		// HACK: Inits would need to be migrated toward IoC
-    	readonly FeedRepository Feeds = new FeedRepository();
-		readonly PageRepository Pages = new PageRepository();
+    	readonly IFeedRepository Feeds;
+		readonly IPageRepository Pages;
+
+		public FeedsController()
+			: this(GlobalSetup.Container.Resolve<IFeedRepository>(), GlobalSetup.Container.Resolve<IPageRepository>())
+		{ }
+
+		public FeedsController(IFeedRepository feedRepo, IPageRepository pageRepo)
+		{
+			Feeds = feedRepo;
+			Pages = pageRepo;
+		}
 
         //
         // GET: /Feeds/
@@ -89,8 +98,7 @@ namespace Lokad.Translate.Controllers
 
 		public ActionResult Refresh(long id)
 		{
-			// HACK: this would probably need to migrated toward IoC
-			var feedProcessor = new FeedProcessor(Feeds, Pages);
+			var feedProcessor = GlobalSetup.Container.Resolve<FeedProcessor>();
 			
 			var updateCount = feedProcessor.ProcessFeed(id);
 

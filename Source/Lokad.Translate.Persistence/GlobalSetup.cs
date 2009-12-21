@@ -1,15 +1,22 @@
 ﻿using System.Configuration;
-using Lokad.Translate.Entities;
-using Microsoft.WindowsAzure.ServiceRuntime;
+using Autofac;
+using Autofac.Builder;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using Lokad.Translate.Entities;
+using Lokad.Translate.Repositories;
+using Microsoft.WindowsAzure.ServiceRuntime;
 using NHibernate;
+using Lokad.Translate.BusinessLogic;
 
 namespace Lokad.Translate
 {
 	public static class GlobalSetup
 	{
+
+		#region NHibernate
+
 		static string ConnectionString
 		{
 			get 
@@ -20,6 +27,7 @@ namespace Lokad.Translate
 			}
 		}
 
+		private static object _syncLock = new object();
 		private static ISessionFactory _sessionFactory;
 		private static ISession _session;
 
@@ -27,10 +35,15 @@ namespace Lokad.Translate
 		{
 			get
 			{
-				// HACK: not thread safe singleton
 				if(_sessionFactory == null)
 				{
-					_sessionFactory = CreateSessionFactory();
+					lock(_syncLock)
+					{
+						if(_sessionFactory == null)
+						{
+							_sessionFactory = CreateSessionFactory();
+						}
+					}
 				}
 
 				return _sessionFactory;
@@ -65,5 +78,39 @@ namespace Lokad.Translate
 				.Mappings(m => m.AutoMappings.Add(model))
 				.BuildSessionFactory();
 		}
+
+		#endregion
+
+		#region IoC
+
+		static IContainer _container;
+
+		static IContainer SetUp()
+		{
+			var builder = new ContainerBuilder();
+
+			builder.RegisterModule(new RepositoriesModule());
+
+			builder.Register<PageProcessor>();
+			builder.Register<FeedProcessor>();
+
+			return builder.Build();
+		}
+
+		/// <summary>Gets the IoC container as initialized by the setup.</summary>
+		public static IContainer Container
+		{
+			get
+			{
+				if(null == _container)
+				{
+					_container = SetUp();
+				}
+
+				return _container;
+			}
+		}
+
+		#endregion
 	}
 }

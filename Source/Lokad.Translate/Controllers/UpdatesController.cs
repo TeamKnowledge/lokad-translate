@@ -13,8 +13,18 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "User")]
     public class UpdatesController : Controller
     {
-		readonly UpdateRepository Updates = new UpdateRepository();
-		readonly UserRepository Users = new UserRepository();
+		readonly IUpdateRepository Updates;
+		readonly IUserRepository Users;
+
+		public UpdatesController()
+			: this(GlobalSetup.Container.Resolve<IUpdateRepository>(), GlobalSetup.Container.Resolve<IUserRepository>())
+		{ }
+
+		public UpdatesController(IUpdateRepository updateRepo, IUserRepository userRepo)
+		{
+			Updates = updateRepo;
+			Users = userRepo;
+		}
 
         //
         // GET: /Updates/

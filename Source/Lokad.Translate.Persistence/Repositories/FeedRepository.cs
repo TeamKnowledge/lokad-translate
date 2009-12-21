@@ -7,7 +7,7 @@ using NHibernate;
 
 namespace Lokad.Translate.Repositories
 {
-	public class FeedRepository : BaseRepository
+	public class FeedRepository : BaseRepository, IFeedRepository
 	{
 		public FeedRepository()
 		{
