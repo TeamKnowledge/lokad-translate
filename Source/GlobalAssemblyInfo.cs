@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Lokad.Translate")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Lokad SAS")]
 [assembly: AssemblyProduct("Lokad.Translate")]
 [assembly: AssemblyCopyright("Copyright ©Lokad SAS 2009-2010")]
