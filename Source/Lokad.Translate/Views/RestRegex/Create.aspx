@@ -20,18 +20,18 @@
                 <%= Html.ValidationMessage("Name", "*") %>
             </p>
             <p>
-                <%= Html.CheckBox("IsEdit") %>
-                <label for="IsEdit" class="inline">Is Edit</label>
+				<%= Html.RadioButton("RegexType", "edit", Model.IsEdit, new { id = "edit" }) %>
+                <label for="edit" class="inline">Is Edit</label>
                 <%= Html.ValidationMessage("IsEdit", "*") %>
             </p>
             <p>
-                <%= Html.CheckBox("IsHistory") %>
-                <label for="IsHistory" class="inline">Is History</label>
+                <%= Html.RadioButton("RegexType", "history", Model.IsHistory, new { id = "history" })%>
+                <label for="history" class="inline">Is History</label>
                 <%= Html.ValidationMessage("IsHistory", "*") %>
             </p>
             <p>
-                <%= Html.CheckBox("IsDiff") %>
-                <label for="IsDiff" class="inline">Is Diff</label>
+                <%= Html.RadioButton("RegexType", "diff", Model.IsDiff, new { id = "diff" })%>
+                <label for="diff" class="inline">Is Diff</label>
                 <%= Html.ValidationMessage("IsDiff", "*") %>
             </p>
             <p>

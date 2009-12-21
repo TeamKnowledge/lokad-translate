@@ -22,15 +22,8 @@
                 Name
             </th>
             <th>
-                History
+                Type
             </th>
-            <th>
-                Diff
-            </th>
-            <th>
-                Edit
-            </th>
-
             <th>
                 Match Regex
             </th>
@@ -50,13 +43,13 @@
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.IsEdit) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.IsHistory) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.IsDiff) %>
+                <% if(item.IsEdit) { %>
+					Edit
+                <% } else if(item.IsHistory) { %>
+					History
+                <% } else { %>
+					Diff
+                <% } %>
             </td>
             <td>
                 <%= Html.Encode(item.MatchRegex) %>

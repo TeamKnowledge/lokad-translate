@@ -22,17 +22,41 @@ namespace Lokad.Translate.Controllers
 
 		public ActionResult Create()
 		{
-			return View();
+			return View(new RestRegex());
+		}
+
+		void GetRegexType(RestRegex target, string radioButtonValue)
+		{
+			// HACK: sub-optimal way of handling radios,
+			// but a change in the Entity, or a new one altogether, would be required otherwise
+
+			target.IsDiff = false;
+			target.IsEdit = false;
+			target.IsHistory = false;
+
+			switch(radioButtonValue)
+			{
+				case "edit":
+					target.IsEdit = true;
+					break;
+				case "history":
+					target.IsHistory = true;
+					break;
+				case "diff":
+					target.IsDiff = true;
+					break;
+			}
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
-		public ActionResult Create([Bind(Exclude = "Id")] RestRegex regex)
+		public ActionResult Create([Bind(Exclude = "Id,IsEdit,IsHistory,IsDiff")] RestRegex regex, string regexType)
 		{
+			GetRegexType(regex, regexType);
 			ValidateRestRegex(regex);
 
 			if (!ModelState.IsValid)
 			{
-				return View();
+				return View(regex);
 			}
 
 			Regexes.Create(regex);
@@ -47,16 +71,17 @@ namespace Lokad.Translate.Controllers
 		//
 		// POST: /Feeds/Edit/5
 		[AcceptVerbs(HttpVerbs.Post)]
-		public ActionResult Edit(long id, RestRegex feed)
+		public ActionResult Edit(long id, RestRegex regex, string regexType)
 		{
-			ValidateRestRegex(feed);
+			GetRegexType(regex, regexType);
+			ValidateRestRegex(regex);
 
 			if (!ModelState.IsValid)
 			{
-				return View();
+				return View(regex);
 			}
 
-			Regexes.Edit(id, feed);
+			Regexes.Edit(id, regex);
 			return RedirectToAction("Index");
 		}
 
