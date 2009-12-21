@@ -9,7 +9,7 @@
     <h2>Regex</h2>
     
     <p>Lokad.Translate lets you customize how your translators will
-    interact the 3rd party web app behind translated.</p>
+    interact the 3rd party web app being translated.</p>
     
     <p>
         <%= Html.ActionLink("Create New", "Create") %>
@@ -64,9 +64,9 @@
             <td>
                 <%= Html.Encode(item.ReplaceRegex) %>
             </td>
-            <th>
+            <td>
 				<%= Html.ActionLink("Delete", "Delete", new { id=item.Id }) %>
-            </th>
+            </td>
         </tr>
     
     <% } %>

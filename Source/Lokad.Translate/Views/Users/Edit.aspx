@@ -38,8 +38,8 @@
                 <%= Html.ValidationMessage("Code", "*") %>
             </p>
             <p>
-                <label for="IsManager">Is Manager:</label>
                 <%= Html.CheckBox("IsManager", Model.IsManager) %>
+                <label for="IsManager" class="inline">Is Manager</label>
                 <%= Html.ValidationMessage("IsManager", "*") %>
             </p>
             <%= Html.ValidationSummary() %>

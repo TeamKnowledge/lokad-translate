@@ -20,18 +20,18 @@
                 <%= Html.ValidationMessage("Name", "*") %>
             </p>
             <p>
-                <label for="IsEdit">Is Edit:</label>
                 <%= Html.CheckBox("IsEdit", Model.IsEdit) %>
+                <label for="IsEdit" class="inline">Is Edit</label>
                 <%= Html.ValidationMessage("IsEdit", "*") %>
             </p>
             <p>
-                <label for="IsHistory">Is History:</label>
                 <%= Html.CheckBox("IsHistory", Model.IsHistory) %>
+                <label for="IsHistory" class="inline">Is History</label>
                 <%= Html.ValidationMessage("IsHistory", "*") %>
             </p>
             <p>
-                <label for="IsDiff">Is Diff:</label>
                 <%= Html.CheckBox("IsDiff", Model.IsDiff) %>
+                <label for="IsDiff" class="inline">Is Diff</label>
                 <%= Html.ValidationMessage("IsDiff", "*") %>
             </p>
             <p>
