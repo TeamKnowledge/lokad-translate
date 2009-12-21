@@ -39,7 +39,7 @@ namespace Lokad.Translate.Controllers
 
 			if (!ModelState.IsValid)
 			{
-				return View();
+				return View(user);
 			}
 
 			Users.Edit(id, user);
@@ -62,7 +62,7 @@ namespace Lokad.Translate.Controllers
 
 			if (!ModelState.IsValid)
 			{
-				return View();
+				return View(user);
 			}
 
 			Users.Create(user);
