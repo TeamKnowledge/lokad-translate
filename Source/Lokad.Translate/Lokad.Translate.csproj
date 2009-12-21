@@ -112,8 +112,8 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\GlobalAssemblyVersion.cs">
-      <Link>GlobalAssemblyVersion.cs</Link>
+    <Compile Include="..\VersionAssemblyInfo.cs">
+      <Link>VersionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BusinessLogic\AuthorizeOrRedirectAttribute.cs" />
     <Compile Include="BusinessLogic\SimpleRoleProvider.cs" />
