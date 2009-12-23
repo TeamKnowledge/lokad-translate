@@ -10,14 +10,6 @@ namespace Lokad.Translate.Repositories
 {
 	public class UserRepository : BaseRepository, IUserRepository
 	{
-		public UserRepository()
-		{
-		}
-
-		public UserRepository(ISession session) : base(session)
-		{
-		}
-
 		public IList<User> List()
 		{
 			return Session.CreateCriteria(typeof(User)).List<User>();

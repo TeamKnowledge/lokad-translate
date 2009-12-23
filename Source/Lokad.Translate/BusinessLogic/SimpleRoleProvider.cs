@@ -4,19 +4,39 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using Lokad.Translate.Repositories;
+using Autofac;
+using Lokad.Translate.Entities;
 
 namespace Lokad.Translate.BusinessLogic
 {
 	/// <summary>Minimal role implementation. Roles are defined
 	/// based on the <c>User</c> table. Only 1 role is available:
 	/// <c>Manager</c>.</summary>
-	public class SimpleRoleProvider : RoleProvider 
+	public class SimpleRoleProvider : RoleProvider
 	{
-		readonly UserRepository Users = new UserRepository();
+		// Note on the implementation: SimpleRoleProvider is a singleton managed by the .NET runtime
+		// All ISession objects are managed on a per-request basis, meaning that this component
+		// needs a fresh ISession every time it's called, thus the need to directly inject IContainer
+		// AND create an inner container, disposed immediately.
+
+		readonly IContainer _container;
+
+		public SimpleRoleProvider()
+			: this(GlobalSetup.Container)
+		{ }
+
+		public SimpleRoleProvider(IContainer container)
+		{
+			_container = container;
+		}
 
 		public override string[] GetRolesForUser(string username)
 		{
-			var user = Users.Get(username);
+			User user;
+			using(var inner = _container.CreateInnerContainer())
+			{
+				user = inner.Resolve<IUserRepository>().Get(username);
+			}
 			
 			// no role if user is not registered
 			if(null == user) return new string[0];
@@ -28,8 +48,12 @@ namespace Lokad.Translate.BusinessLogic
 		public override bool IsUserInRole(string username, string roleName)
 		{
 			if("Manager" != roleName) return false;
-			
-			var user = Users.Get(username);
+
+			User user;
+			using(var inner = _container.CreateInnerContainer())
+			{
+				user = inner.Resolve<IUserRepository>().Get(username);
+			}
 			return user.IsManager;
 		}
 

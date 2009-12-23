@@ -9,14 +9,6 @@ namespace Lokad.Translate.Repositories
 {
 	public class FeedRepository : BaseRepository, IFeedRepository
 	{
-		public FeedRepository()
-		{
-		}
-
-		public FeedRepository(ISession session) : base(session)
-		{
-		}
-
 		public IList<Feed> List()
 		{
 			return Session.CreateCriteria(typeof(Feed)).List<Feed>();

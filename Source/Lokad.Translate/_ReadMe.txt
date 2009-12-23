@@ -18,8 +18,6 @@ http://sites.google.com/a/lokad.com/dev/Home/release-information/lokad-internal-
 - upgrade NHibernate toward the Linq interface (much cleaner and compact).
 
 - repository implementations need review (newbie at NHibernate)
-- NHibernate session management is a mess, see also
-http://blog.benday.com/archive/2005/03/16/198.aspx
 
 POSTPONED
 

@@ -11,14 +11,6 @@ namespace Lokad.Translate.Repositories
 {
 	public class MappingRepository : BaseRepository, IMappingRepository
 	{
-		public MappingRepository()
-		{
-		}
-
-		public MappingRepository(ISession session) : base(session)
-		{
-		}
-
 		public IList<Mapping> List(string code)
 		{
 			return Session.CreateCriteria(typeof(Mapping))

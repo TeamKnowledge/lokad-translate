@@ -10,14 +10,6 @@ namespace Lokad.Translate.Repositories
 {
 	public class PageRepository : BaseRepository, IPageRepository
 	{
-		public PageRepository()
-		{
-		}
-
-		public PageRepository(ISession session) : base(session)
-		{
-		}
-
 		public IList<Page> List()
 		{
 			return Session.CreateCriteria(typeof(Page)).List<Page>()

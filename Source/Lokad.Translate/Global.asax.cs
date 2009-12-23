@@ -28,5 +28,10 @@ namespace Lokad.Translate
 		{
 			RegisterRoutes(RouteTable.Routes);
 		}
+
+		protected void Application_EndRequest(object sender, EventArgs e)
+		{
+			GlobalSetup.DisposeRequestContainer();
+		}
 	}
 }

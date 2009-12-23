@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Autofac;
 using NHibernate;
 
 namespace Lokad.Translate.Repositories
@@ -10,7 +11,7 @@ namespace Lokad.Translate.Repositories
 	{
 		protected readonly ISession Session;
 
-		public BaseRepository() : this(GlobalSetup.CurrentSession)
+		public BaseRepository() : this(GlobalSetup.Container.Resolve<ISession>())
 		{
 		}
 

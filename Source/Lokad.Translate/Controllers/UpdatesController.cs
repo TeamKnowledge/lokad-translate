@@ -5,6 +5,7 @@ using System.Security.Permissions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using Autofac;
 using Lokad.Translate.BusinessLogic;
 using Lokad.Translate.Repositories;
 

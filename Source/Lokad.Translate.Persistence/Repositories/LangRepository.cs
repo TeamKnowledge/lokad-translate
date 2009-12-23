@@ -9,14 +9,6 @@ namespace Lokad.Translate.Repositories
 {
 	public class LangRepository : BaseRepository, ILangRepository
 	{
-		public LangRepository()
-		{
-		}
-
-		public LangRepository(ISession session) : base(session)
-		{
-		}
-
 		public IList<Lang> List()
 		{
 			return Session.CreateCriteria(typeof(Lang)).List<Lang>();

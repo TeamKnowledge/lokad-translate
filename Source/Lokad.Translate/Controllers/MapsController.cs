@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using Autofac;
 using Lokad.Translate.BusinessLogic;
 using Lokad.Translate.Entities;
 using Lokad.Translate.Repositories;

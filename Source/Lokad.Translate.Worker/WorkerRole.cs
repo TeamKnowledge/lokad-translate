@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
+using Autofac;
 using Lokad.Translate.BusinessLogic;
 using Lokad.Translate.Repositories;
 using Microsoft.WindowsAzure.Diagnostics;
@@ -16,22 +17,15 @@ namespace Lokad.Translate.Worker
 	{
 		public override void Run()
 		{
-			// HACK: Inits would need to be migrated toward IoC
-    		
 			// update all feeds and pages accordingly
 			while (true)
 			{
-				using (var session = GlobalSetup.SessionFactory.OpenSession())
+				using(var inner = GlobalSetup.Container.CreateInnerContainer())
 				{
-					var feeds = new FeedRepository(session);
-					var pages = new PageRepository(session);
-					var langs = new LangRepository(session);
-					var mappings = new MappingRepository(session);
-
-					var feedProc = new FeedProcessor(feeds, pages);
-					var pageProc = new PageProcessor(pages, langs, mappings);
-
+					var feedProc = inner.Resolve<FeedProcessor>();
 					feedProc.ProcessAll();
+
+					var pageProc = inner.Resolve<PageProcessor>();
 					pageProc.ProcessAll();
 				}
 
