@@ -20,12 +20,15 @@ namespace Lokad.Translate.Repositories
 		/// <returns>The page.</returns>
 		Page Edit(long id);
 		
-		/// <summary>
-		/// Saves changes to a page.
-		/// </summary>
+		/// <summary>Saves changes to a page, except modified date.</summary>
 		/// <param name="id">The ID of the page.</param>
 		/// <param name="page">The updated page.</param>
 		void Edit(long id, Page page);
+
+		/// <summary>Saves changes to a page, include modified date.</summary>
+		/// <param name="id">The ID of the page.</param>
+		/// <param name="page">The updated page.</param>
+		void EditFull(long id, Page page);
 		
 		/// <summary>Finds a page by URL.</summary>
 		/// <param name="url">The URL to look for.</param>
@@ -34,10 +37,6 @@ namespace Lokad.Translate.Repositories
 		
 		/// <summary>Lists all pages.</summary>
 		/// <returns>The pages.</returns>
-		IList<Lokad.Translate.Entities.Page> List();
-		
-		/// <summary>Saves a page.</summary>
-		/// <param name="page">The updated page.</param>
-		void Save(Page page);
+		IList<Page> List();
 	}
 }

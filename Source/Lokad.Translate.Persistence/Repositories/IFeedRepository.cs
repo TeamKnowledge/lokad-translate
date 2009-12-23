@@ -23,7 +23,7 @@ namespace Lokad.Translate.Repositories
 		/// <summary>Saves changes to a feed.</summary>
 		/// <param name="id">The ID of the feed.</param>
 		/// <param name="feed">The updated feed.</param>
-		void Edit(long id, Lokad.Translate.Entities.Feed feed);
+		void Edit(long id, Feed feed);
 
 		/// <summary>Lists all feeds.</summary>
 		/// <returns>The feeds.</returns>

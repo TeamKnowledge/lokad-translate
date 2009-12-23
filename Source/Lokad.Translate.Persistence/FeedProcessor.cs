@@ -93,7 +93,7 @@ namespace Lokad.Translate.BusinessLogic
 				else
 				{
 					page.LastUpdated = item.PubDate;
-					Pages.Save(page);
+					Pages.EditFull(page.Id, page);
 				}
 			}
 

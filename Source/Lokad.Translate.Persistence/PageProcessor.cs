@@ -16,37 +16,11 @@ namespace Lokad.Translate.BusinessLogic
 		private readonly ILangRepository Langs;
 		private readonly IMappingRepository Mappings;
 
-		public PageProcessor(
-			IPageRepository pages,
-			ILangRepository langs, 
-			IMappingRepository mappings)
+		public PageProcessor(IPageRepository pages, ILangRepository langs, IMappingRepository mappings)
 		{
 			Pages = pages;
 			Langs = langs;
 			Mappings = mappings;
-		}
-
-		/// <summary>Create missing mappings.</summary>
-		/// <return>The number of inserted mappings.</return>
-		public void ProcessPage(Page page)
-		{
-			var langs = Langs.List().ToArray();
-
-			var maps = page.Mappings;
-			var now = DateTime.UtcNow;
-
-			foreach (var lang in langs.Where(x => !maps.Any(y => y.Code == x.Code)))
-			{
-				var mapping = new Mapping
-	              	{
-	              		Code = lang.Code,
-	              		Created = now,
-	              		Page = page
-	              	};
-				page.Mappings.Add(mapping);
-
-				Mappings.Create(mapping);
-			}
 		}
 
 		/// <summary>Create all missing mappings.</summary>
@@ -62,16 +36,16 @@ namespace Lokad.Translate.BusinessLogic
 
 			foreach(var page in Pages.List())
 			{
-				var mapLangs = new List<string>();
+				var maps = page.Mappings;
 
 				// Creating the missing mappings
-				foreach(var lang in langs.Where(u => !mapLangs.Contains(u.Code)))
+				foreach(var lang in langs.Where(x => !maps.Any(y => y.Code == x.Code)))
 				{
 					var mapping = new Mapping
 					{
 						Code = lang.Code,
 						Created = now,
-						Page = page
+						Page = page						
 					};
 					page.Mappings.Add(mapping);
 					Mappings.Create(mapping);

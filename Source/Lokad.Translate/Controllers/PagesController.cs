@@ -120,7 +120,7 @@ namespace Lokad.Translate.Controllers
 		{
 			var page = Pages.Edit(id);
 			page.LastUpdated = DateTime.UtcNow;
-			Pages.Save(page);
+			Pages.Edit(id, page);
 
 			return RedirectToAction("Index");
 		}

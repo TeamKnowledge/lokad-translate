@@ -49,6 +49,22 @@ namespace Lokad.Translate.Repositories
 			}
 		}
 
+		public void EditFull(long id, Page page)
+		{
+			using(var trans = Session.BeginTransaction())
+			{
+				var dbPage = Session.Get<Page>(id);
+
+				// don't change 'LastUpdated' (on purpose)
+				dbPage.LastUpdated = page.LastUpdated;
+				dbPage.IsIgnored = page.IsIgnored;
+				dbPage.Url = page.Url;
+
+				Session.Update(dbPage);
+				trans.Commit();
+			}
+		}
+
 		public Page Find(string url)
 		{
 			var results = Session.CreateCriteria(typeof(Page))
@@ -56,15 +72,6 @@ namespace Lokad.Translate.Repositories
 
 			return results.Count > 0 ? results[0] : null;
 
-		}
-
-		public void Save(Page page)
-		{
-			using (var trans = Session.BeginTransaction())
-			{
-				Session.Save(page);
-				trans.Commit();
-			}
 		}
 
 		public void Delete(long id)
