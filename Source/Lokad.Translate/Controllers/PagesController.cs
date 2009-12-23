@@ -113,6 +113,15 @@ namespace Lokad.Translate.Controllers
 			return View(page.Mappings);
 		}
 
+		//
+		// GET: /Pages/CreateMappings/5
+		public ActionResult CreateMappings(int id)
+		{
+			var processor = GlobalSetup.Container.Resolve<PageProcessor>();
+			processor.ProcessPage(Pages.Edit(id));
+
+			return RedirectToAction("Mappings", new { id = id });
+		}
 
 		//
 		// GET: /Pages/MarkAsUpdated/5

@@ -23,35 +23,55 @@ namespace Lokad.Translate.BusinessLogic
 			Mappings = mappings;
 		}
 
+		/// <summary>Create missing mappings for a page.</summary>
+		/// <return>The number of inserted mappings.</return>
+		public int ProcessPage(Page page)
+		{
+			// TODO: performance is really poor, to be redesigned (see also below)
+			var langs = Langs.List().ToArray();
+
+			return ProcessPage(page, langs);
+		}
+
+		/// <summary>Create missing mappings for a page.</summary>
+		/// <return>The number of inserted mappings.</return>
+		public int ProcessPage(Page page, Lang[] langs)
+		{
+			var maps = page.Mappings;
+			var now = DateTime.UtcNow;
+
+			var count = 0;
+
+			// Creating the missing mappings
+			foreach(var lang in langs.Where(x => !maps.Any(y => y.Code == x.Code)))
+			{
+				var mapping = new Mapping
+				{
+					Code = lang.Code,
+					Created = now,
+					Page = page
+				};
+				page.Mappings.Add(mapping);
+				Mappings.Create(mapping);
+
+				count++;
+			}
+
+			return count;
+		}
+
 		/// <summary>Create all missing mappings.</summary>
 		/// <returns>The number of new mappings.</returns>
 		public int ProcessAll()
 		{
 			var count = 0;
 
-			// TODO: performance is really poor, to be redesigned
+			// TODO: performance is really poor, to be redesigned (see also above)
 			var langs = Langs.List().ToArray();
-
-			var now = DateTime.UtcNow;
 
 			foreach(var page in Pages.List())
 			{
-				var maps = page.Mappings;
-
-				// Creating the missing mappings
-				foreach(var lang in langs.Where(x => !maps.Any(y => y.Code == x.Code)))
-				{
-					var mapping = new Mapping
-					{
-						Code = lang.Code,
-						Created = now,
-						Page = page						
-					};
-					page.Mappings.Add(mapping);
-					Mappings.Create(mapping);
-
-					count++;
-				}
+				count += ProcessPage(page, langs);
 			}
 
 			return count;
