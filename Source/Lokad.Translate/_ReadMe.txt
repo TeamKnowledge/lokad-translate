@@ -2,14 +2,6 @@
 
 A web-based utility tool, to speed-up the translation process.
 
-BUG:
-- cron job can create multiple identical mappings for the same page. There is something going wrong
-with the process code.
-
-SETUP: 
-- Execute Database001.sql on the database.
-- Go to /Home/Setup to insert the first user.
-
 TODO for v1.0:
 - upgrade lib using Lokad.Data.dll
 http://sites.google.com/a/lokad.com/dev/Home/release-information/lokad-internal-1-3
