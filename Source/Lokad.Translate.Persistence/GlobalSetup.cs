@@ -20,7 +20,8 @@ namespace Lokad.Translate
 
 		#region NHibernate
 
-		static string ConnectionString
+		// public because it's needed in the web app for ELMAH
+		public static string ConnectionString
 		{
 			get 
 			{
