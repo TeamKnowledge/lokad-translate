@@ -119,6 +119,11 @@
 			<Output ItemName="cloudSources" TaskParameter="Include" />
 		</CreateItem>
 		<Copy SourceFiles="@(cloudSources)" DestinationFolder="$(CloudReadyPath)" />
+		
+		<CreateItem Include=".\Setup.txt;.\Source\*.sql">
+			<Output ItemName="InfoAndSql" TaskParameter="Include" />
+		</CreateItem>
+		<Copy SourceFiles="@(InfoAndSql)" DestinationFolder="$(CloudReadyPath)" />
 	</Target>
 
 	<Target Name="GenerateHelp" DependsOnTargets="Build;Copy">
