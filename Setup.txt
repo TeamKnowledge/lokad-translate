@@ -1,0 +1,32 @@
+Setup instructions for Lokad.Translate
+
+1. Prepare the SQL Azure database with the 'Database001.sql' script, also creating the appropriate login/user (*)
+2. Set the connection string in ALL of the following places (**):
+	a. Web.config (named 'SqlServices' - needed for ELMAH)
+	b. ServiceConfiguration.cscfg (named 'SqlConnectionString' - needed for regular database connectivity,
+	   both in the Web and Worker roles)
+3. Build the application using go.cmd
+4. Deploy the application and .cscfg file to Windows Azure
+5. Navigate to /Home/Setup and follow the instructions for configuring the first user account
+
+Note: you can review error logs (only for the web role) navigating to the 'elmah.axd'
+	  page of your installation (requires authentication)
+
+(*) To setup a database in SQL Azure, follow these steps (you will not be able to use the GUI-based commands):
+1. Make sure that your SQL Azure account is active (go to http://sql.azure.com)
+2. Open SQL Server Management Studio (Express), and:
+	a) dismiss the default connection dialog, open a new query window and
+	   logon using your administrator credentials (see admin console mentioned above)
+	b) create a database with:
+	   create database [YourDatabase]
+	c) create a login with:
+	   create login [your_login] with password = 'your_password'
+	d) disconnect and re-connect specifying [YourDatabase] in the connection options, using the same admin login used before
+	e) map a user to the new login and assign it the appropriate schema with:
+	   create user [your_login] for login [your_login] -- using the same login name for simplicity
+	   exec sp_addrolemember 'db_owner', 'your_login'
+	f) disconnect and re-connect specifying [YourDatabase] in the connection options, using the same NEW login
+	g) run the DDL script (authenticating as 'your_login')
+
+(**) Use the following format:
+     Server=tcp:YOUR_HOST.database.windows.net;Database=YourDatabase;User ID=your_login;Password=your_password;Trusted_Connection=False;Encrypt=True;

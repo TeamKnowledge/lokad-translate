@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{39AA2944-6984-424F-8197-9345A9A34B02}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Database001.sql = Source\Database001.sql
+		Setup.txt = Setup.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lokad.Translate", "Source\Lokad.Translate\Lokad.Translate.csproj", "{71640C96-3B28-4FDE-B9FE-97F513E5352D}"
