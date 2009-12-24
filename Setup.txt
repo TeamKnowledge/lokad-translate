@@ -1,10 +1,7 @@
 Setup instructions for Lokad.Translate
 
 1. Prepare the SQL Azure database with the 'Database001.sql' script, also creating the appropriate login/user (*)
-2. Set the connection string in ALL of the following places (**):
-	a. Web.config (named 'SqlServices' - needed for ELMAH)
-	b. ServiceConfiguration.cscfg (named 'SqlConnectionString' - needed for regular database connectivity,
-	   both in the Web and Worker roles)
+2. Set the connection string in ServiceConfiguration.cscfg (named 'SqlConnectionString') for both web and worker roles
 3. Build the application using go.cmd
 4. Deploy the application and .cscfg file to Windows Azure
 5. Navigate to /Home/Setup and follow the instructions for configuring the first user account
