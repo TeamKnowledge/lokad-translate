@@ -94,10 +94,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>GlobalAssemblyInfo.cs</Link>
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\VersionAssemblyInfo.cs">
-      <Link>VersionAssemblyInfo.cs</Link>
+      <Link>Properties\VersionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Entities\DbVersion.cs" />
     <Compile Include="Entities\Feed.cs" />

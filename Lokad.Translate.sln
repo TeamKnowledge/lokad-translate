@@ -17,6 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lokad.Translate.Tests", "So
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lokad.Translate.Worker", "Source\Lokad.Translate.Worker\Lokad.Translate.Worker.csproj", "{8CC16FCA-2242-4A33-A907-259A1CA48487}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Files", "Build Files", "{8F5C6A4F-C39C-4E8B-968C-68420F8E22BF}"
+	ProjectSection(SolutionItems) = preProject
+		Lokad.Translate.build = Lokad.Translate.build
+		Lokad.Translate.ccnet = Lokad.Translate.ccnet
+		ReadMe.docx = ReadMe.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
