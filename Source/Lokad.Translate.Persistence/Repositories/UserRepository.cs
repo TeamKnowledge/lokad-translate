@@ -5,6 +5,7 @@ using System.Web;
 using Lokad.Translate.Entities;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 
 namespace Lokad.Translate.Repositories
 {
@@ -12,7 +13,9 @@ namespace Lokad.Translate.Repositories
 	{
 		public IList<User> List()
 		{
-			return Session.CreateCriteria(typeof(User)).List<User>();
+			return
+				(from u in Session.Linq<User>()
+				 select u).ToList();
 		}
 
 		public void Create(User user)

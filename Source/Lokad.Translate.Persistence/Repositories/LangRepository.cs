@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Lokad.Translate.Entities;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace Lokad.Translate.Repositories
 {
@@ -11,7 +12,9 @@ namespace Lokad.Translate.Repositories
 	{
 		public IList<Lang> List()
 		{
-			return Session.CreateCriteria(typeof(Lang)).List<Lang>();
+			return
+				(from l in Session.Linq<Lang>()
+				 select l).ToList();
 		}
 
 		public void Create(Lang lang)

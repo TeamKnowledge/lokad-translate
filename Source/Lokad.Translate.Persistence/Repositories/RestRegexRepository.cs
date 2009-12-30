@@ -3,6 +3,7 @@ using System.Linq;
 using Lokad.Translate.Entities;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 
 namespace Lokad.Translate.Repositories
 {
@@ -10,32 +11,37 @@ namespace Lokad.Translate.Repositories
 	{
 		public IList<RestRegex> List()
 		{
-			return Session.CreateCriteria(typeof(RestRegex)).List<RestRegex>()
-				.OrderBy(u => u.Name).ToList();
+			return
+				(from r in Session.Linq<RestRegex>()
+				 orderby r.Name
+				 select r).ToList();
 		}
 
 		public IList<RestRegex> ListEdit()
 		{
-			return Session.CreateCriteria(typeof(RestRegex))
-				.Add(Restrictions.Eq("IsEdit", true))
-				.List<RestRegex>()
-				.OrderBy(u => u.Name).ToList();
+			return
+				(from r in Session.Linq<RestRegex>()
+				 where r.IsEdit
+				 orderby r.Name
+				 select r).ToList();
 		}
 
 		public IList<RestRegex> ListHistory()
 		{
-			return Session.CreateCriteria(typeof(RestRegex))
-				.Add(Restrictions.Eq("IsHistory", true))
-				.List<RestRegex>()
-				.OrderBy(u => u.Name).ToList();
+			return
+				(from r in Session.Linq<RestRegex>()
+				 where r.IsHistory
+				 orderby r.Name
+				 select r).ToList();
 		}
 
 		public IList<RestRegex> ListDiff()
 		{
-			return Session.CreateCriteria(typeof(RestRegex))
-				.Add(Restrictions.Eq("IsDiff", true))
-				.List<RestRegex>()
-				.OrderBy(u => u.Name).ToList();
+			return
+				(from r in Session.Linq<RestRegex>()
+				 where r.IsDiff
+				 orderby r.Name
+				 select r).ToList();
 		}
 
 		public void Create(RestRegex regex)

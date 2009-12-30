@@ -5,6 +5,7 @@ using System.Web;
 using Lokad.Translate.Entities;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 
 namespace Lokad.Translate.Repositories
 {
@@ -12,15 +13,18 @@ namespace Lokad.Translate.Repositories
 	{
 		public IList<UpdateBatch> List()
 		{
-			return Session.CreateCriteria(typeof(UpdateBatch))
-				.List<UpdateBatch>().OrderByDescending(u => u.Created).ToList();
+			return
+				(from u in Session.Linq<UpdateBatch>()
+				 orderby u.Created descending
+				 select u).ToList();
 		}
 
 		public IList<UpdateBatch> Pending()
 		{
-			var updates = Session.CreateCriteria(typeof(Update))
-				.Add(Restrictions.IsNull("UpdateBatch"))
-				.List<Update>().ToList();
+			var updates =
+				(from u in Session.Linq<Update>()
+				 where u.UpdateBatch == null
+				 select u).ToList();
 
 			var batches = updates
 				.GroupBy(u => u.User)

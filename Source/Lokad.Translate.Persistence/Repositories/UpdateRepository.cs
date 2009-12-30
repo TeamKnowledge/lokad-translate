@@ -5,6 +5,7 @@ using System.Web;
 using Lokad.Translate.Entities;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 
 namespace Lokad.Translate.Repositories
 {
@@ -12,16 +13,19 @@ namespace Lokad.Translate.Repositories
 	{
 		public IList<Update> List()
 		{
-			return Session.CreateCriteria(typeof(Update))
-				.List<Update>().OrderByDescending(u => u.Created).ToList();
+			return
+				(from u in Session.Linq<Update>()
+				 orderby u.Created descending
+				 select u).ToList();
 		}
 
 		public IList<Update> List(long userId)
 		{
-			// HACK: performance issue here (retrieving all updates)
-			return Session.CreateCriteria(typeof(Update)).List<Update>()
-				.Where(u => u.User.Id == userId)
-				.OrderByDescending(u => u.Created).ToList();
+			return
+				(from u in Session.Linq<Update>()
+				 where u.User.Id == userId
+				 orderby u.Created descending
+				 select u).ToList();
 		}
 
 		public void Create(Update update)

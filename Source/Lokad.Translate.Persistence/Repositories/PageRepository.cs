@@ -5,6 +5,7 @@ using System.Web;
 using Lokad.Translate.Entities;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 
 namespace Lokad.Translate.Repositories
 {
@@ -12,8 +13,10 @@ namespace Lokad.Translate.Repositories
 	{
 		public IList<Page> List()
 		{
-			return Session.CreateCriteria(typeof(Page)).List<Page>()
-				.OrderByDescending(p => p.LastUpdated).ToList();
+			return
+				(from p in Session.Linq<Page>()
+				 orderby p.LastUpdated
+				 select p).ToList();
 		}
 
 		public void Create(Page page)
@@ -55,7 +58,6 @@ namespace Lokad.Translate.Repositories
 			{
 				var dbPage = Session.Get<Page>(id);
 
-				// don't change 'LastUpdated' (on purpose)
 				dbPage.LastUpdated = page.LastUpdated;
 				dbPage.IsIgnored = page.IsIgnored;
 				dbPage.Url = page.Url;
@@ -67,11 +69,10 @@ namespace Lokad.Translate.Repositories
 
 		public Page Find(string url)
 		{
-			var results = Session.CreateCriteria(typeof(Page))
-					.Add(Restrictions.Eq("Url", url)).List<Page>();
-
-			return results.Count > 0 ? results[0] : null;
-
+			return
+				(from p in Session.Linq<Page>()
+				 where p.Url == url
+				 select p).FirstOrDefault();
 		}
 
 		public void Delete(long id)
