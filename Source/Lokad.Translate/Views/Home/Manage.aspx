@@ -15,5 +15,6 @@
         <li class="hbig"><%= Html.ActionLink("Users", "Index", "Users")%></li>
         <li class="hbig"><%= Html.ActionLink("Regex", "Index", "RestRegex")%></li>
         <li class="hbig"><%= Html.ActionLink("Cron", "Cron", "Home")%></li>
+        <li class="hbig"><%= Html.ActionLink("Errors", "Index", "elmah.axd")%></li>
 	</ul>
 </asp:Content>

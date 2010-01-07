@@ -147,8 +147,7 @@
     <Compile Include="MvcHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Translate.mdf">
-    </Content>
+    <None Include="App_Data\Translate.mdf" />
     <Content Include="App_Data\Translate_log.ldf">
       <DependentUpon>Translate.mdf</DependentUpon>
     </Content>
