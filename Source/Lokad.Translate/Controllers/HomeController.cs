@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region Copyright (c) Lokad 2009 - 2010
+// This code is released under the terms of the new BSD licence.
+// URL: http://www.lokad.com/
+#endregion
+
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Autofac;
 using Lokad.Translate.BusinessLogic;
 using Lokad.Translate.Entities;
 using Lokad.Translate.Repositories;

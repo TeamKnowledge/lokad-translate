@@ -1,5 +1,6 @@
-﻿#region Copyright (c) Lokad 2008
-// Company: http://www.lokad.com
+﻿#region Copyright (c) Lokad 2009 - 2010
+// This code is released under the terms of the new BSD licence.
+// URL: http://www.lokad.com/
 #endregion
 
 using System.Web.Mvc;
