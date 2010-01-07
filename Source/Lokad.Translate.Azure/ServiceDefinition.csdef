@@ -6,13 +6,11 @@
 			<InputEndpoint name="HttpIn" protocol="http" port="80" />
 		</InputEndpoints>
 		<ConfigurationSettings>
-			<!--<Setting name="DiagnosticsConnectionString" />-->
 			<Setting name="SqlConnectionString"/>
 		</ConfigurationSettings>
 	</WebRole>
 	<WorkerRole name="Lokad.Translate.Worker" enableNativeCodeExecution="true">
 		<ConfigurationSettings>
-			<!--<Setting name="DiagnosticsConnectionString" />-->
 			<Setting name="SqlConnectionString"/>
 		</ConfigurationSettings>
 	</WorkerRole>

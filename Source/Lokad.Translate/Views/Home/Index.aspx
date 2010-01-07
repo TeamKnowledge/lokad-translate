@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="indexTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Home Page
+    Home Page - Lokad.Translate
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -24,5 +24,5 @@
 		<li>Jobs that gather a list of updates (to get translators paid).</li>
     </ul>
     
-    <p>Designed by <a href="http://www.lokad.com/">Lokad</a> (c)</p>
+    <p>Designed by <a href="http://www.lokad.com/">Lokad</a> (c), check also the <a href="http://code.google.com/p/lokad-translate/">project page</a>.</p>
 </asp:Content>

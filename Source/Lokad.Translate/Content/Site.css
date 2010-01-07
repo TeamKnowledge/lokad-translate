@@ -155,7 +155,7 @@ ul#menu li a
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-    background-color: #e8eef4;
+    background-color: #FFC963;
     color: #C7180F;
 }
 
@@ -226,22 +226,22 @@ input[type="password"]
 
 table 
 {
-  border: solid 1px #e8eef4;
+  border: solid 1px #FFC963;
   border-collapse: collapse;
 }
 
 table td 
 {
   padding: 5px;   
-  border: solid 1px #e8eef4;
+  border: solid 1px #FFC963;
 }
 
 table th
 {
   padding: 6px 5px;
   text-align: left;
-  background-color: #e8eef4; 
-  border: solid 1px #e8eef4;   
+  background-color: #FFC963; 
+  border: solid 1px #FFC963;   
 }
 
 /* MISC  
