@@ -7,6 +7,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Feeds</h2>
+    <p>The web feeds represents the source of information where the updated
+    pages will be retrieved from. Basically, Lokad.Translate routinely pings
+    those feeds, and accordingly creates (or updates) the source pages. Once
+    a page is marked as <b>updated</b>, it becomes visible for the translators
+    who should, in turn, update the matching translated page.
+    </p>
+    
 	<p><%= Html.Encode(ViewData["Message"]) %> </p>
     <table>
         <tr>

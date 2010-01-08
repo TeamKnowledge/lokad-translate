@@ -25,7 +25,7 @@
                 <%= Html.ValidationMessage("Created", "*") %>
             </p>
             <p>
-                <label for="LastUpdated">LastUpdated:</label>
+                <label for="LastUpdated">Last Updated:</label>
                 <%= Html.TextBox("LastUpdated", String.Format("{0:g}", Model.LastUpdated), new { disabled = "true" })%>
                 <%= Html.ValidationMessage("LastUpdated", "*") %>
             </p>

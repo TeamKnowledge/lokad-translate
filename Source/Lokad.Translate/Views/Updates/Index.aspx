@@ -8,7 +8,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Worklogs</h2>
-
+	<p>This page gathers the elementary updates as recorded by the translators while
+	proceeding throw the mappings. Updates can be grouped into <b>Jobs</b> by managers
+	within Lokad.Translate.</p>
     <table>
         <tr>
 			<th>

@@ -24,7 +24,7 @@
             </p>
             <p>
                 <label for="OpenId">OpenId:</label>
-                <%= Html.TextBox("OpenId", Model.OpenId) %>
+                <%= Html.TextBox("OpenId", Model.OpenId) %> (don't forget the trailing slash at the end)
                 <%= Html.ValidationMessage("OpenId", "*") %>
             </p>
             <p>
@@ -33,8 +33,8 @@
                 <%= Html.ValidationMessage("DisplayName", "*") %>
             </p>
             <p>
-                <label for="Code">Code:</label>
-                <%= Html.TextBox("Code", Model.Code) %>
+                <label for="Code">Language Code:</label>
+                <%= Html.TextBox("Code", Model.Code) %> (default language section displayed in the <em>Pending work</em> tab)
                 <%= Html.ValidationMessage("Code", "*") %>
             </p>
             <p>

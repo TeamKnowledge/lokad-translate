@@ -7,6 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Languages</h2>
+    <p>This page lists the target languages in which the source pages (as retrieved
+    by the feeds) will be translated. We suggest to use short tokens here such as
+    <em>fr</em>, <em>de</em> or <em>sh</em>. Once a source page gets updated,
+    a matching work notification will appear for each targeted language.</p>
 	<p><%= Html.Encode(ViewData["Message"]) %></p>
     <table>
         <tr>

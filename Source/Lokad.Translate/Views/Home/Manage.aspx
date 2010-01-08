@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Manage</h2>
-
+	<p>Administrate your Lokad.Translate instance.</p>
 	<ul>
 		<li class="hbig"><%= Html.ActionLink("Jobs", "Index", "UpdateBatches")%></li>
 		<li class="hbig"><%= Html.ActionLink("Feeds", "Index", "Feeds")%></li>

@@ -30,7 +30,7 @@
                 <%= Html.ValidationMessage("Code", "*") %>
             </p>
             <p>
-                <label for="DestinationUrl">DestinationUrl:</label>
+                <label for="DestinationUrl">Destination Url:</label>
                 <%= Html.TextBox("DestinationUrl", Model.DestinationUrl) %>
                 <%= Html.ValidationMessage("DestinationUrl", "*") %>
             </p>

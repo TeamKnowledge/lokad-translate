@@ -9,7 +9,9 @@
     <h2>Regex</h2>
     
     <p>Lokad.Translate lets you customize how your translators will
-    interact the 3rd party web app being translated.</p>
+    interact the 3rd party web app being translated. The regex patterns
+    are used to transform the input URL (the URL of the pages used as
+    source) into REST API calls.</p>
     
     <p>
         <%= Html.ActionLink("Create New", "Create") %>

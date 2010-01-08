@@ -8,7 +8,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Pages</h2>
-
+	<p>The table below gathers all the <b>sources</b> that should be translated into
+	the target languages. Those pages are automatically retrieved through the <b>feeds</b>
+	(if you have setup a web feed in the <b>Manage &raquo; Feeds</b> tab). You can also
+	manually add pages and mark then as <em>updated</em>. Translators get automatically
+	notified when new pages or updated pages need their attention.
+	</p>
+	
     <% using (Html.BeginForm("Create", "Pages")) {%>
 
         <fieldset>

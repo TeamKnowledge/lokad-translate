@@ -7,7 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Jobs</h2>
-
+	<p>A <b>job</b> represents a set of elementary work updates from 
+	a translator. Jobs are useful to keep track of the work of translators 
+	(and getting them paid too), as they aggregates the fine-grained 
+	work update details.</p>
     <table>
         <tr>
             <th></th>

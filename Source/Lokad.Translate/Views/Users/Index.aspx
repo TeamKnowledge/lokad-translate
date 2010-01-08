@@ -7,7 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Users</h2>
-
+	<p>This page gathers the users that are granted access rights to Lokad.Translate.
+	<b>Manager</b>s are granted administrative rights, basically all the options available
+	through the <b>Manage</b> tab. Typically each translators should have its own OpenID 
+	access.</p>
     <table>
         <tr>
             <th></th>

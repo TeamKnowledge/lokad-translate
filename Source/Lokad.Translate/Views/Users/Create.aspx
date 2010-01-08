@@ -14,17 +14,17 @@
             <legend>Fields</legend>
             <p>
                 <label for="OpenId">OpenId:</label>
-                <%= Html.TextBox("OpenId") %>
+                <%= Html.TextBox("OpenId") %> (don't forget the trailing slash at the end)
                 <%= Html.ValidationMessage("OpenId", "*") %>
             </p>
             <p>
-                <label for="DisplayName">DisplayName:</label>
+                <label for="DisplayName">Display Name:</label>
                 <%= Html.TextBox("DisplayName") %>
                 <%= Html.ValidationMessage("DisplayName", "*") %>
             </p>
             <p>
-                <label for="Code">Code:</label>
-                <%= Html.TextBox("Code") %>
+                <label for="Code">Language Code:</label> 
+                <%= Html.TextBox("Code") %> (default language section displayed in the <em>Pending work</em> tab)
                 <%= Html.ValidationMessage("Code", "*") %>
             </p>
             <p>
