@@ -1,0 +1,1 @@
+This directory contains images used for the public wiki of Lokad.Translate.
