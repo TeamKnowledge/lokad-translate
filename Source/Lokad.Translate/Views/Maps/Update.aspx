@@ -76,6 +76,11 @@
             <%= Html.TextBox("Version", "", new { style = "width:50px" })%>
             <%= Html.ValidationMessage("Version", "*") %>
         </p>
+<%--	HACK: #7 is postponed because it would require a DB change
+		<p>
+			<label for="IsUpdateComplete" style="display:inline">Is update complete?</label>
+			<%= Html.CheckBox("IsUpdateComplete", true) %>
+		</p>--%>
         <%= Html.ValidationSummary() %>
         <p>
             <input type="submit" value="Submit" />

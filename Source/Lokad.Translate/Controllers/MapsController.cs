@@ -96,6 +96,9 @@ namespace Lokad.Translate.Controllers
 			var destinationUrl = form["DestinationUrl"];
 			var wordCount = int.Parse(form["WordCount"]);
 			var version = form["Version"];
+			
+			// HACK: CheckBox has a subtle behavior in ASP.NET MVC
+			//var isUpdateComplete = form["IsUpdateComplete"].Contains("true"); 
 
 			var mapping = Mappings.Edit(id);
 
