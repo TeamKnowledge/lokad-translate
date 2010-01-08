@@ -157,6 +157,8 @@ namespace Lokad.Translate.Controllers
 
 		string EditUrl(string url)
 		{
+			if (null == url) return null;
+
 			foreach(var pattern in Regexes.ListEdit())
 			{
 				var regex = new Regex(pattern.MatchRegex, RegexOptions.None);
@@ -173,6 +175,8 @@ namespace Lokad.Translate.Controllers
 
 		string HistoryUrl(string url)
 		{
+			if(null == url) return null;
+
 			foreach (var pattern in Regexes.ListHistory())
 			{
 				var regex = new Regex(pattern.MatchRegex, RegexOptions.None);
@@ -189,6 +193,8 @@ namespace Lokad.Translate.Controllers
 
 		string DiffUrl(string url, string version)
 		{
+			if (null == url || null == version) return null;
+
 			foreach (var pattern in Regexes.ListDiff())
 			{
 				var regex = new Regex(pattern.MatchRegex, RegexOptions.None);
