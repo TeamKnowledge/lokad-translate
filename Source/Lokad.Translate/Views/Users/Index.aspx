@@ -15,7 +15,7 @@
                 OpenId
             </th>
             <th>
-                DisplayName
+                Display Name
             </th>
             <th>
                 Code

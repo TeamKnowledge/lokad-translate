@@ -61,13 +61,13 @@
         <legend>Record Update</legend>
         <% if (string.IsNullOrEmpty(Model.DestinationUrl)) { %>
         <p>
-            <label for="DestinationUrl">DestinationUrl:</label>
+            <label for="DestinationUrl">Destination Url:</label>
             <%= Html.TextBox("DestinationUrl", "" )%>
             <%= Html.ValidationMessage("DestinationUrl", "*") %>
         </p>
         <%} %>
         <p>
-            <label for="WordCount" style="display:inline">WordCount:</label>
+            <label for="WordCount" style="display:inline">Word Count:</label>
             <%= Html.TextBox("WordCount", 0, new { style = "width:50px" })%>
             <%= Html.ValidationMessage("WordCount", "*") %>
         </p>
