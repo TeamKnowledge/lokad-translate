@@ -8,7 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%= Html.Encode(ViewData["LanguageCode"])%> - Pending work </h2>
-	<p>The element that link a source page (original document) with its destination page
+	<p>The item that links a source page (original document) with its destination page
 	(translated document) is called a <b>mapping</b> in the Lokad.Translate terminology. 
 	The mappings that need attention are displayed in bold here below. Click the <b>Update</b>
 	button associated to a mapping to get a view of both the original and destination document.</p>
