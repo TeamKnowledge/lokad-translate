@@ -2,6 +2,10 @@
 
 A web-based utility tool, to speed-up the translation process.
 
+Author: Joannes Vermorel, Dario Solera
+URL: http://code.google.com/p/lokad-translate/
+
+
 TODO for v1.0:
 - upgrade lib using Lokad.Data.dll
 http://sites.google.com/a/lokad.com/dev/Home/release-information/lokad-internal-1-3

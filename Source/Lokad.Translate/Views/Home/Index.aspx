@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Import Namespace="System.Reflection"%>
 
 <asp:Content ID="indexTitle" ContentPlaceHolderID="TitleContent" runat="server">
     Home Page - Lokad.Translate
@@ -19,10 +20,10 @@
     </p>
     <ul>
 		<li>Changes on the original website.</li>
-		<li>Mappings between targets and localized versions.</li>
+		<li>Mappings between original and localized versions.</li>
 		<li>Updates brought to localized versions.</li>
-		<li>Jobs that gather a list of updates (to get translators paid).</li>
+		<li>Jobs that gather a list of updates (to keep track of translator works).</li>
     </ul>
     
-    <p>Designed by <a href="http://www.lokad.com/">Lokad</a> (c), check also the <a href="http://code.google.com/p/lokad-translate/">project page</a>.</p>
+    <p>Lokad.Translate v<%= Assembly.GetExecutingAssembly().GetName().Version %> - Designed by <a href="http://www.lokad.com/">Lokad</a> (c), check also the <a href="http://code.google.com/p/lokad-translate/">project page</a>.</p>
 </asp:Content>
