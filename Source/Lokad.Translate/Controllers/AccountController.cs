@@ -7,10 +7,11 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.RelyingParty;
+using Lokad.Translate.BusinessLogic;
 
 namespace Lokad.Translate.Controllers
 {
-	[HandleError]
+	[HandleErrorWithElmah]
 	public class AccountController : Controller
 	{
 		private static readonly OpenIdRelyingParty OpenId = new OpenIdRelyingParty();

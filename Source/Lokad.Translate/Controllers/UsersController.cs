@@ -10,6 +10,7 @@ using Lokad.Translate.Repositories;
 
 namespace Lokad.Translate.Controllers
 {
+	[HandleErrorWithElmah]
 	[AuthorizeOrRedirect(Roles = "Manager, User")]
     public class UsersController : Controller
     {

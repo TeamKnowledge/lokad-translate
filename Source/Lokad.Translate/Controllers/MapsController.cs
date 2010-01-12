@@ -11,6 +11,7 @@ using Lokad.Translate.Repositories;
 
 namespace Lokad.Translate.Controllers
 {
+	[HandleErrorWithElmah]
 	[AuthorizeOrRedirect(Roles = "User")]
     public class MapsController : Controller
     {

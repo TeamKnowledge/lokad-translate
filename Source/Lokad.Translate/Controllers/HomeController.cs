@@ -3,6 +3,7 @@
 // URL: http://www.lokad.com/
 #endregion
 
+using System;
 using System.Linq;
 using System.Web.Mvc;
 using Lokad.Translate.BusinessLogic;
@@ -11,29 +12,18 @@ using Lokad.Translate.Repositories;
 
 namespace Lokad.Translate.Controllers
 {
-	[HandleError]
+	[HandleErrorWithElmah]
 	public class HomeController : Controller
 	{
 		readonly IUserRepository Users;
-		readonly IFeedRepository Feeds;
-		readonly IPageRepository Pages;
-		readonly ILangRepository Langs;
-		readonly IMappingRepository Mappings;
 
 		public HomeController()
-			: this(GlobalSetup.Container.Resolve<IUserRepository>(), GlobalSetup.Container.Resolve<IFeedRepository>(),
-				GlobalSetup.Container.Resolve<IPageRepository>(), GlobalSetup.Container.Resolve<ILangRepository>(),
-				GlobalSetup.Container.Resolve<IMappingRepository>())
+			: this(GlobalSetup.Container.Resolve<IUserRepository>())
 		{ }
 
-		public HomeController(IUserRepository userRepo, IFeedRepository feedRepo, IPageRepository pageRepo,
-			ILangRepository langRepo, IMappingRepository mappingRepo)
+		public HomeController(IUserRepository userRepo)
 		{
 			Users = userRepo;
-			Feeds = feedRepo;
-			Pages = pageRepo;
-			Langs = langRepo;
-			Mappings = mappingRepo;
 		}
 
 		public ActionResult Index()
@@ -83,6 +73,11 @@ namespace Lokad.Translate.Controllers
 			}
 
 			return RedirectToAction("Setup");
+		}
+
+		public ActionResult Error()
+		{
+			return View("Error");
 		}
 	}
 }

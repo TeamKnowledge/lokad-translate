@@ -10,7 +10,8 @@ using Microsoft.WindowsAzure.ServiceRuntime;
 namespace Lokad.Translate
 {
 	/// <summary>
-	/// Implements a custom ELMAH SQL Error Log that is able to read the SQL Connection String from the Azure Environment.
+	/// Implements a custom ELMAH SQL Error Log that is able to read the 
+	/// SQL Connection String from the Azure Environment.
 	/// </summary>
 	public class AzureSqlErrorLog : SqlErrorLog
 	{

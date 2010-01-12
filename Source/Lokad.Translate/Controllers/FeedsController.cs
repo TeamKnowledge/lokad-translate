@@ -17,6 +17,7 @@ using NHibernate;
 
 namespace Lokad.Translate.Controllers
 {
+	[HandleErrorWithElmah]
 	[AuthorizeOrRedirect(Roles = "Manager")]
     public class FeedsController : Controller
     {
