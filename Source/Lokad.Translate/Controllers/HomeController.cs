@@ -31,6 +31,12 @@ namespace Lokad.Translate.Controllers
 			return View();
 		}
 
+		// exception thrown on purpose to check elmah
+		public ActionResult Havoc()
+		{
+			throw new ArgumentException("on purpose");
+		}
+
 		public ActionResult Manage()
 		{
 			return View();
