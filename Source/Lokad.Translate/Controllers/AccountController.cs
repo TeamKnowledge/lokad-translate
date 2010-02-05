@@ -5,6 +5,7 @@
 
 using System.Web.Mvc;
 using System.Web.Security;
+using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using Lokad.Translate.BusinessLogic;
@@ -31,7 +32,15 @@ namespace Lokad.Translate.Controllers
 				Identifier id;
 				if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
 				{
-					OpenId.CreateRequest(Request.Form["openid_identifier"]).RedirectToProvider();
+					try
+					{
+						OpenId.CreateRequest(Request.Form["openid_identifier"]).RedirectToProvider();
+					}
+					catch(ProtocolException)
+					{
+						ViewData["Message"] = "No such endpoint can be found.";
+						return View("Login");
+					}
 				}
 				else
 				{
