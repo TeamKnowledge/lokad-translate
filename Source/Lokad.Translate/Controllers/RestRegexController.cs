@@ -46,6 +46,9 @@ namespace Lokad.Translate.Controllers
 
 			switch(radioButtonValue)
 			{
+				case "code":
+					target.IsCode = true;
+					break;
 				case "edit":
 					target.IsEdit = true;
 					break;
@@ -59,7 +62,7 @@ namespace Lokad.Translate.Controllers
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
-		public ActionResult Create([Bind(Exclude = "Id,IsEdit,IsHistory,IsDiff")] RestRegex regex, string regexType)
+		public ActionResult Create([Bind(Exclude = "Id,IsCode,IsEdit,IsHistory,IsDiff")] RestRegex regex, string regexType)
 		{
 			GetRegexType(regex, regexType);
 			ValidateRestRegex(regex);
@@ -78,8 +81,6 @@ namespace Lokad.Translate.Controllers
 			return View(Regexes.Edit(id));
 		}
 
-		//
-		// POST: /Feeds/Edit/5
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Edit(long id, RestRegex regex, string regexType)
 		{
@@ -127,6 +128,14 @@ namespace Lokad.Translate.Controllers
 
 		public ActionResult SetupForScrewTurn()
 		{
+			var code = new RestRegex
+			{
+				Name = "ScrewTurn Wiki View Code",
+				IsCode = true,
+				MatchRegex = @"^(http|https)://((.)+)/((.)+).ashx",
+				ReplaceRegex = @"$1://$2/$4.ashx?Code=1"
+			};
+
 			var edit = new RestRegex
 			{
 				Name = "ScrewTurn Wiki Edit",
@@ -154,6 +163,7 @@ namespace Lokad.Translate.Controllers
 			Regexes.Create(diff);
 			Regexes.Create(hist);
 			Regexes.Create(edit);
+			Regexes.Create(code);
 
 			return RedirectToAction("Index");
 		}

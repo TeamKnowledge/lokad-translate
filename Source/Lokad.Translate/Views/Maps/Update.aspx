@@ -19,12 +19,14 @@
     
     <p>
 		<b>M1</b> <%= Html.FrameView("Src", Model.Page.Url)%> | 
+		<%= Html.FrameView("Code", (string)ViewData["CodeUrl"]) %> | 
 		<%= Html.FrameView("Diff", (string)ViewData["DiffUrl"]) %> | 
 		<%= Html.FrameView("Hist", (string)ViewData["HistUrl"])%> |
 		<%= Html.FrameView("Dest", Model.DestinationUrl)%> |
 		<%= Html.FrameView("Edit", (string)ViewData["EditUrl"])%> <br />
 		
 		<b>M2</b> <%= Html.SideView("Src", Model.Page.Url)%> | 
+		<%= Html.SideView("Code", (string)ViewData["CodeUrl"]) %> | 
 		<%= Html.SideView("Diff", (string)ViewData["DiffUrl"]) %> | 
 		<%= Html.SideView("Hist", (string)ViewData["HistUrl"])%> |
 		<%= Html.SideView("Dest", Model.DestinationUrl)%> |

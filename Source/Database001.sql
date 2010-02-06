@@ -47,6 +47,7 @@ GO
 CREATE TABLE [dbo].[RestRegex](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[IsHistory] [bit] NOT NULL,
+	[IsCode] [bit] NOT NULL,
 	[IsDiff] [bit] NOT NULL,
 	[IsEdit] [bit] NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,

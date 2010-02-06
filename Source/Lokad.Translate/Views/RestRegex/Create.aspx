@@ -20,6 +20,11 @@
                 <%= Html.ValidationMessage("Name", "*") %>
             </p>
             <p>
+				<%= Html.RadioButton("RegexType", "code", Model.IsCode, new { id = "code" }) %>
+                <label for="code" class="inline">Is Code</label>
+                <%= Html.ValidationMessage("IsCode", "*") %>
+            </p>
+            <p>
 				<%= Html.RadioButton("RegexType", "edit", Model.IsEdit, new { id = "edit" }) %>
                 <label for="edit" class="inline">Is Edit</label>
                 <%= Html.ValidationMessage("IsEdit", "*") %>

@@ -25,6 +25,10 @@ namespace Lokad.Translate.Entities
 		/// toward the edition mode for the targeted page.</summary>
 		public virtual bool IsEdit { get; set; }
 
+		/// <summary>Indicates whether the regex pattern is used to navigate
+		/// toward the 'view code' mode for the targeted page.</summary>
+		public virtual bool IsCode { get; set; }
+
 		/// <summary>Name associated to the regex (for user readability only,
 		/// it has no functional purpose).</summary>
 		public virtual string Name { get; set; }

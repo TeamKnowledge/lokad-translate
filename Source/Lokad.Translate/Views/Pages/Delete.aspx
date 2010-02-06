@@ -6,9 +6,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Delete Page <%= String.Format("<a href=\"{0}\">{0}</a>", ViewData["PageUrl"]) %></p></h2>
+    <h2>Delete Page <%= String.Format("<a href=\"{0}\">{0}</a>", ViewData["PageUrl"]) %></h2>
 
-	<%= Html.Encode(ViewData["Message"]) %></p>
+	<p><%= Html.Encode(ViewData["Message"]) %></p>
 
 	<p>List of mappings that will be deleted.</p>
     <table>

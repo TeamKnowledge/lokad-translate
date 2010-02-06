@@ -19,6 +19,15 @@ namespace Lokad.Translate.Repositories
 				 select r).ToList();
 		}
 
+		public IList<RestRegex> ListCode()
+		{
+			return
+				(from r in Session.Linq<RestRegex>()
+				 where r.IsCode
+				 orderby r.Name
+				 select r).ToList();
+		}
+
 		public IList<RestRegex> ListEdit()
 		{
 			return
@@ -66,6 +75,7 @@ namespace Lokad.Translate.Repositories
 			{
 				var dbRegex = Session.Get<RestRegex>(id);
 
+				dbRegex.IsCode = regex.IsCode;
 				dbRegex.IsDiff = regex.IsDiff;
 				dbRegex.IsEdit = regex.IsEdit;
 				dbRegex.IsHistory = regex.IsHistory;

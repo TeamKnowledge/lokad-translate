@@ -34,6 +34,10 @@ namespace Lokad.Translate.Repositories
 		/// <summary>Lists all REST regexes.</summary>
 		/// <returns>The REST regexes.</returns>
 		IList<RestRegex> List();
+
+		/// <summary>Lists all REST regexes of type 'code'.</summary>
+		/// <returns>The REST regexes of tye 'code'.</returns>
+		IList<RestRegex> ListCode();
 		
 		/// <summary>Lists all REST regexes of type 'diff'.</summary>
 		/// <returns>The REST regexes of tye 'diff'.</returns>

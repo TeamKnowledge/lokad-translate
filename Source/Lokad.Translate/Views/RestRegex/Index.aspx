@@ -45,7 +45,9 @@
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <% if(item.IsEdit) { %>
+                <% if(item.IsCode) { %>
+					Code
+                <% } else if(item.IsEdit) { %>
 					Edit
                 <% } else if(item.IsHistory) { %>
 					History

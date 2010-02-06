@@ -12,6 +12,7 @@ namespace Lokad.Translate.Mappings
 		public RestRegexMap()
 		{
 			Id(x => x.Id);
+			Map(x => x.IsCode);
 			Map(x => x.IsDiff);
 			Map(x => x.IsEdit);
 			Map(x => x.IsHistory);

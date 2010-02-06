@@ -3,6 +3,7 @@
 // URL: http://www.lokad.com/
 #endregion
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Lokad.Translate.BusinessLogic;
@@ -85,6 +86,7 @@ namespace Lokad.Translate.Controllers
 			ViewData["EditUrl"] = EditUrl(update.DestinationUrl);
 			ViewData["HistUrl"] = HistoryUrl(update.Page.Url);
 			ViewData["DiffUrl"] = DiffUrl(update.Page.Url, update.Version);
+			ViewData["CodeUrl"] = CodeUrl(update.Page.Url);
 
 			return View(update);
 		}
@@ -157,6 +159,17 @@ namespace Lokad.Translate.Controllers
 		public ActionResult Next(long id)
 		{
 			return RedirectToAction("Update", new { id = Mappings.Next(id) });
+		}
+
+		string CodeUrl(string url)
+		{
+			if (null == url) return null;
+
+			return (from pattern in Regexes.ListCode()
+			        let regex = new Regex(pattern.MatchRegex, RegexOptions.None)
+			        let match = regex.Match(url)
+			        where null != match
+			        select match.Result(pattern.ReplaceRegex)).FirstOrDefault();
 		}
 
 		string EditUrl(string url)
