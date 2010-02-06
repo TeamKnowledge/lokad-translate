@@ -87,7 +87,7 @@
         <p>
             <input type="submit" value="Submit" />
         </p>
-        <p> <%= Html.Encode(ViewData["Message"]) %></p>
+        <p class="input-ok-feedback"> <%= Html.Encode(ViewData["Message"]) %></p>
     </fieldset>
 
     <% } %>

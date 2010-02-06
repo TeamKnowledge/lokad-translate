@@ -306,6 +306,11 @@ div#title
     background-color: #ffeeee;
 }
 
+.input-ok-feedback
+{
+	color:Green;
+}
+
 .validation-summary-errors
 {
     font-weight: bold;
