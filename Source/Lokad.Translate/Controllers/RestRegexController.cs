@@ -119,7 +119,7 @@ namespace Lokad.Translate.Controllers
 				ModelState.AddModelError("ReplaceRegex", "Replace Regex is required.", "");
 			}
 
-			if(!(regex.IsDiff || regex.IsEdit || regex.IsHistory))
+			if(!(regex.IsDiff || regex.IsCode || regex.IsEdit || regex.IsHistory))
 			{
 				ModelState.AddModelError("IsDiff", "At least one version must be checked.", "");
 
