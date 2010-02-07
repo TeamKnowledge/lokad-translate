@@ -181,7 +181,7 @@ namespace Lokad.Translate.Controllers
 				var regex = new Regex(pattern.MatchRegex, RegexOptions.None);
 				var match = regex.Match(url);
 
-				if(null != match)
+				if(null != match && match.Success)
 				{
 					return match.Result(pattern.ReplaceRegex);
 				}
@@ -199,7 +199,7 @@ namespace Lokad.Translate.Controllers
 				var regex = new Regex(pattern.MatchRegex, RegexOptions.None);
 				var match = regex.Match(url);
 
-				if (null != match)
+				if (null != match && match.Success)
 				{
 					return match.Result(pattern.ReplaceRegex);
 				}
@@ -217,7 +217,7 @@ namespace Lokad.Translate.Controllers
 				var regex = new Regex(pattern.MatchRegex, RegexOptions.None);
 				var match = regex.Match(url);
 
-				if (null != match)
+				if (null != match && match.Success)
 				{
 					return match.Result(pattern.ReplaceRegex).Replace("VERSION", version);
 				}
