@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Lokad.Translate.Entities.Mapping>" %>
+<%@ Import Namespace="Lokad.Translate" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit Mapping - Lokad.Translate
@@ -22,12 +23,14 @@
             <p>
                 <label for="Created">Created:</label>
                 <%= Html.TextBox("Created", String.Format("{0:g}", Model.Created), new { disabled = "true" })%>
-                <%= Html.ValidationMessage("Created", "*") %>
             </p>
             <p>
                 <label for="Code">Code:</label>
                 <%= Html.TextBox("Code", Model.Code, new { disabled = "true" })%>
-                <%= Html.ValidationMessage("Code", "*") %>
+            </p>
+            <p>
+                <label for="SourceUrl">Source Url:</label>
+                <%= Html.CompactLink(Model.Page.Url)%>
             </p>
             <p>
                 <label for="DestinationUrl">Destination Url:</label>
