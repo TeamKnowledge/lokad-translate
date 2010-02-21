@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Lokad.Translate.Entities.Update>>" %>
+<%@ Import Namespace="Lokad.Translate" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Job details
@@ -21,6 +22,9 @@
                 Created
             </th>
             <th>
+				Destination
+            </th>
+            <th>
                 WordCount
             </th>
             <th>
@@ -36,6 +40,9 @@
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.Created)) %>
+            </td>
+            <td>
+                <%= Html.CompactLink(item.Mapping.DestinationUrl)%>
             </td>
             <td>
                 <%= Html.Encode(item.WordCount) %>
