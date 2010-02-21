@@ -70,6 +70,19 @@ namespace Lokad.Translate.Repositories
 			}
 		}
 
+		public void Delete(long id)
+		{
+			using (var trans = Session.BeginTransaction())
+			{
+				Session
+					.CreateSQLQuery("Delete Mapping WHERE Id=?")
+					.SetParameter(0, id)
+					.ExecuteUpdate();
+
+				trans.Commit();
+			}
+		}
+
 		/// <summary>Utility to quickly navigate to the next mapping.</summary>
 		public long Next(long id)
 		{

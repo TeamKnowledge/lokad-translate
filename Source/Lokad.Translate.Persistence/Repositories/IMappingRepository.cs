@@ -39,5 +39,10 @@ namespace Lokad.Translate.Repositories
 		/// <summary>Updates a mapping.</summary>
 		/// <param name="mapping">The mapping.</param>
 		void Update(Mapping mapping);
+
+		/// <summary>Delete the mapping.</summary>
+		/// <param name="id">The ID of the mapping.</param>
+		/// <remarks>Delete all corresponding worklogs.</remarks>
+		void Delete(long id);
 	}
 }

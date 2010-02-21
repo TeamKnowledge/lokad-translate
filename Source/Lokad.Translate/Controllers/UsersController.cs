@@ -11,7 +11,7 @@ using Lokad.Translate.Repositories;
 namespace Lokad.Translate.Controllers
 {
 	[HandleErrorWithElmah]
-	[AuthorizeOrRedirect(Roles = "Manager, User")]
+	[AuthorizeOrRedirect(Roles = "Manager")]
     public class UsersController : Controller
     {
 		readonly IUserRepository Users;

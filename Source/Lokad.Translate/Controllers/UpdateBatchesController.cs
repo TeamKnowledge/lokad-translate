@@ -10,7 +10,7 @@ using Lokad.Translate.Repositories;
 namespace Lokad.Translate.Controllers
 {
 	[HandleErrorWithElmah]
-	[AuthorizeOrRedirect(Roles = "Manager, User")]
+	[AuthorizeOrRedirect(Roles = "Manager")]
     public class UpdateBatchesController : Controller
     {
 		readonly IUpdateBatchRepository Batches;

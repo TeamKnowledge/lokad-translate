@@ -25,6 +25,7 @@
             <th>
                 Target
             </th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -44,6 +45,9 @@
             </td>
             <td>
 				 <%= String.Format("<a href=\"{0}\">{0}</a>", item.DestinationUrl) %>
+            </td>
+            <td>
+				<%= Html.ActionLink("Delete", "DeleteMapping", new { id = item.Id }) %>
             </td>
         </tr>
     

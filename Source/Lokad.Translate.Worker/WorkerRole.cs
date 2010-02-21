@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿#region Copyright (c) Lokad 2009 - 2010
+// This code is released under the terms of the new BSD licence.
+// URL: http://www.lokad.com/
+#endregion
+
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
-using Autofac;
 using Lokad.Translate.BusinessLogic;
-using Lokad.Translate.Repositories;
-using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 
 namespace Lokad.Translate.Worker

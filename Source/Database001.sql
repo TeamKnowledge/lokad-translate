@@ -193,6 +193,14 @@ GO
 ALTER TABLE [dbo].[UpdateBatch] CHECK CONSTRAINT [FK_UpdateBatch_UserId]
 GO
 
+/****** [MANUAL]  Object:  ForeignKey [FK_Mapping_PageId]   ******/
+ALTER TABLE [dbo].[Update]  WITH CHECK ADD  CONSTRAINT [FK_Update_MappingId] FOREIGN KEY([Mapping_id])
+REFERENCES [dbo].[Mapping] ([Id])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Update] CHECK CONSTRAINT [FK_Update_MappingId]
+GO
 
 
 /*************************************** ELMAH ******************************************/

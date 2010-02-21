@@ -11,25 +11,28 @@ using Lokad.Translate.Repositories;
 namespace Lokad.Translate.Controllers
 {
 	[HandleErrorWithElmah]
-	[AuthorizeOrRedirect(Roles = "Manager, User")]
+	[AuthorizeOrRedirect(Roles = "Manager")]
     public class PagesController : Controller
     {
-		readonly IPageRepository Pages;
+		readonly IPageRepository _pages;
+		readonly IMappingRepository _mappings; 
 
 		public PagesController()
-			: this(GlobalSetup.Container.Resolve<IPageRepository>())
+			: this(GlobalSetup.Container.Resolve<IPageRepository>(),
+					GlobalSetup.Container.Resolve<IMappingRepository>())
 		{ }
 
-		public PagesController(IPageRepository pageRepo)
+		public PagesController(IPageRepository pages, IMappingRepository mappings)
 		{
-			Pages = pageRepo;
+			_pages = pages;
+			_mappings = mappings;
 		}
 
         //
         // GET: /Pages/
         public ActionResult Index()
         {
-            return View(Pages.List());
+            return View(_pages.List());
         }
 
         //
@@ -54,7 +57,7 @@ namespace Lokad.Translate.Controllers
 				return View();
 			}
 
-			Pages.Create(page);
+			_pages.Create(page);
 			return RedirectToAction("Index");
         }
 
@@ -62,7 +65,7 @@ namespace Lokad.Translate.Controllers
         // GET: /Pages/Edit/5
         public ActionResult Edit(long id)
         {
-            return View(Pages.Edit(id));
+            return View(_pages.Edit(id));
         }
 
         //
@@ -70,7 +73,7 @@ namespace Lokad.Translate.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(long id, Page page)
         {
-			Pages.Edit(id, page);
+			_pages.Edit(id, page);
 			return RedirectToAction("Index");
         }
 
@@ -78,7 +81,7 @@ namespace Lokad.Translate.Controllers
 		// GET: /Pages/Delete/5
 		public ActionResult Delete(long id)
 		{
-			var page = Pages.Edit(id);
+			var page = _pages.Edit(id);
 			ViewData["PageUrl"] = page.Url;
 			return View(page.Mappings);
 		}
@@ -89,11 +92,11 @@ namespace Lokad.Translate.Controllers
 		{
 			try
 			{
-				Pages.Delete(id);
+				_pages.Delete(id);
 			}
 			catch(InvalidOperationException)
 			{
-				var page = Pages.Edit(id);
+				var page = _pages.Edit(id);
 				ViewData["PageUrl"] = page.Url;
 				ViewData["Message"] = "Cannot delete page because updates are present.";
 
@@ -103,32 +106,37 @@ namespace Lokad.Translate.Controllers
 			return RedirectToAction("Index");
 		}
 
-		//
-		// GET: /Pages/Mappings/5
 		public ActionResult Mappings(long id)
 		{
-			var page = Pages.Edit(id);
+			var page = _pages.Edit(id);
 			ViewData["PageUrl"] = page.Url;
 			return View(page.Mappings);
 		}
 
-		//
-		// GET: /Pages/CreateMappings/5
 		public ActionResult CreateMappings(int id)
 		{
 			var processor = GlobalSetup.Container.Resolve<PageProcessor>();
-			processor.ProcessPage(Pages.Edit(id));
+			processor.ProcessPage(_pages.Edit(id));
 
 			return RedirectToAction("Mappings", new { id = id });
 		}
 
-		//
-		// GET: /Pages/MarkAsUpdated/5
+		public ActionResult DeleteMapping(long id)
+		{
+			var mapping = _mappings.Edit(id);
+			var pageId = mapping.Page.Id;
+
+			_mappings.Delete(id);
+
+			return RedirectToAction("Mappings", new { id = pageId });
+		}
+
+
 		public ActionResult MarkAsUpdated(long id)
 		{
-			var page = Pages.Edit(id);
+			var page = _pages.Edit(id);
 			page.LastUpdated = DateTime.UtcNow;
-			Pages.Edit(id, page);
+			_pages.Edit(id, page);
 
 			return RedirectToAction("Index");
 		}
