@@ -32,5 +32,14 @@ namespace Lokad.Translate.Repositories
 		/// <param name="userId">The ID of the user.</param>
 		/// <returns>The updates of the user.</returns>
 		IList<Update> List(long userId);
+
+		/// <summary>Lists all udpates, not part of an update batch.</summary>
+		/// <returns>The updates.</returns>
+		IList<Update> ListNotBatched();
+
+		/// <summary>Lists all updates of a user, not part of an update batch.</summary>
+		/// <param name="userId">The ID of the user.</param>
+		/// <returns>The updates of the user.</returns>
+		IList<Update> ListNotBatched(long userId);
 	}
 }

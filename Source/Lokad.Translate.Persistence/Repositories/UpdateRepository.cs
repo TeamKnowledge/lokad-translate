@@ -29,6 +29,24 @@ namespace Lokad.Translate.Repositories
 				 select u).ToList();
 		}
 
+		public IList<Update> ListNotBatched()
+		{
+			return
+				(from u in Session.Linq<Update>()
+				 where u.UpdateBatch == null
+				 orderby u.Created descending
+				 select u).ToList();
+		}
+
+		public IList<Update> ListNotBatched(long userId)
+		{
+			return
+				(from u in Session.Linq<Update>()
+				 where u.User.Id == userId && u.UpdateBatch == null
+				 orderby u.Created descending
+				 select u).ToList();
+		}
+
 		public void Create(Update update)
 		{
 			// HACK: should be using database-side value generation?

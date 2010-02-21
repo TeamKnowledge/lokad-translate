@@ -13,51 +13,59 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "User")]
     public class UpdatesController : Controller
     {
-		readonly IUpdateRepository Updates;
-		readonly IUserRepository Users;
+		readonly IUpdateRepository _updates;
+		readonly IUserRepository _users;
 
 		public UpdatesController()
 			: this(GlobalSetup.Container.Resolve<IUpdateRepository>(), GlobalSetup.Container.Resolve<IUserRepository>())
 		{ }
 
-		public UpdatesController(IUpdateRepository updateRepo, IUserRepository userRepo)
+		public UpdatesController(IUpdateRepository updates, IUserRepository users)
 		{
-			Updates = updateRepo;
-			Users = userRepo;
+			_updates = updates;
+			_users = users;
 		}
 
-        //
-        // GET: /Updates/
         public ActionResult Index()
         {
 			// returning all updates to admins
 			if (User.IsInRole("Manager"))
 			{
-				return View(Updates.List());
+				return View(_updates.ListNotBatched());
 			}
 
 			// else returning only user updates
-        	return View(Updates.List(Users.Get(User.Identity.Name).Id));
+        	return View(_updates.ListNotBatched(_users.Get(User.Identity.Name).Id));
         }
 
-		//
-		// GET: /Updates/Delete/5
+		public ActionResult All()
+		{
+			// returning all updates to admins
+			if (User.IsInRole("Manager"))
+			{
+				return View("Index", _updates.List());
+			}
+
+			// else returning only user updates
+			return View("Index", _updates.List(_users.Get(User.Identity.Name).Id));
+		}
+
 		public ActionResult Delete(long id)
 		{
 			// non-admin could only delete their own logs
 			if (!User.IsInRole("Manager"))
 			{
-				var update = Updates.Edit(id);
-				var user = Users.Get(User.Identity.Name);
+				var update = _updates.Edit(id);
+				var user = _users.Get(User.Identity.Name);
 
 				if(user.Id != update.User.Id)
 				{
-					return RedirectToAction("Index", Updates.List());
+					return RedirectToAction("Index", _updates.List());
 				}
 			}
 
-			Updates.Delete(id);
-			return RedirectToAction("Index", Updates.List());
+			_updates.Delete(id);
+			return RedirectToAction("Index", _updates.List());
 		}
     }
 }

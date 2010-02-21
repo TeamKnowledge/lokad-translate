@@ -11,6 +11,8 @@
 	<p>This page gathers the elementary updates as recorded by the translators while
 	proceeding throw the mappings. Updates can be grouped into <b>Jobs</b> by managers
 	within Lokad.Translate.</p>
+	<p><%= Html.ActionLink("View All", "All", "Updates") %>
+    </p>
     <table>
         <tr>
 			<th>
