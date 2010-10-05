@@ -38,6 +38,9 @@ namespace Lokad.Translate.BusinessLogic
 		/// <return>The number of inserted mappings.</return>
 		public int ProcessPage(Page page, Lang[] langs)
 		{
+            // don't process ignored pages
+            if (page.IsIgnored) return 0;
+
 			var maps = page.Mappings;
 			var now = DateTime.UtcNow;
 
