@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Lokad.Translate.Entities;
+using NHibernate;
 using NHibernate.Criterion;
 
 namespace Lokad.Translate.Repositories
@@ -14,7 +15,7 @@ namespace Lokad.Translate.Repositories
 	{
 		public IList<Mapping> List(string code)
 		{
-			return Session.CreateCriteria(typeof(Mapping))
+			return Session.CreateCriteria(typeof(Mapping)).SetFetchMode("Page", FetchMode.Eager)
 					.Add(Restrictions.Eq("Code", code)).List<Mapping>()
 					.OrderByDescending(m => Order(m)).ToList();
 		}
