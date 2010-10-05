@@ -1,10 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{39AA2944-6984-424F-8197-9345A9A34B02}"
 	ProjectSection(SolutionItems) = preProject
 		Source\Database001.sql = Source\Database001.sql
 		Setup.txt = Setup.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Files", "Build Files", "{8F5C6A4F-C39C-4E8B-968C-68420F8E22BF}"
+	ProjectSection(SolutionItems) = preProject
+		Lokad.Translate.build = Lokad.Translate.build
+		Lokad.Translate.ccnet = Lokad.Translate.ccnet
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lokad.Translate", "Source\Lokad.Translate\Lokad.Translate.csproj", "{71640C96-3B28-4FDE-B9FE-97F513E5352D}"
@@ -14,12 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lokad.Translate.Persistence", "Source\Lokad.Translate.Persistence\Lokad.Translate.Persistence.csproj", "{B25EA4AA-5A0D-4515-979A-B47446EF34F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lokad.Translate.Worker", "Source\Lokad.Translate.Worker\Lokad.Translate.Worker.csproj", "{8CC16FCA-2242-4A33-A907-259A1CA48487}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Files", "Build Files", "{8F5C6A4F-C39C-4E8B-968C-68420F8E22BF}"
-	ProjectSection(SolutionItems) = preProject
-		Lokad.Translate.build = Lokad.Translate.build
-		Lokad.Translate.ccnet = Lokad.Translate.ccnet
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

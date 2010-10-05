@@ -18,12 +18,8 @@ namespace Lokad.Translate.Controllers
 		readonly IUserRepository Users;
 
 		public HomeController()
-			: this(GlobalSetup.Container.Resolve<IUserRepository>())
-		{ }
-
-		public HomeController(IUserRepository userRepo)
 		{
-			Users = userRepo;
+		    Users = GlobalSetup.Container.Resolve<IUserRepository>();
 		}
 
 		public ActionResult Index()
