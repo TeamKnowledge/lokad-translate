@@ -6,9 +6,13 @@
 <head id="Head1" runat="server">
     <title>Update Mapping - Lokad.Translate</title>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+    <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
 </head>
 
 <body>
+
+    <% Html.EnableClientValidation(); %>
     <table>
 		<tr>
 			<td valign="top">
@@ -65,7 +69,7 @@
         <p>
             <label for="DestinationUrl">Destination Url:</label>
             <%= Html.TextBox("DestinationUrl", "" )%>
-            <%= Html.ValidationMessage("DestinationUrl", "*") %>
+            <%= Html.ValidationMessage("DestinationUrl") %>
         </p>
         <%} %>
         <p>

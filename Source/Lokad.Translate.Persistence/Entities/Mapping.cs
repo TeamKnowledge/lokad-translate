@@ -4,6 +4,8 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace Lokad.Translate.Entities
 {
@@ -19,6 +21,7 @@ namespace Lokad.Translate.Entities
 		/// <summary>Language code.</summary>
 		public virtual string Code { get; set; }
 
+        [RegularExpression("http.*", ErrorMessage = "Url must start with http.")]
 		public virtual string DestinationUrl { get; set; }
 
 		public virtual DateTime LastUpdated { get; set; }
