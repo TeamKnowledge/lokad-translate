@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Lokad.Translate.BusinessLogic;
 using Lokad.Translate.Entities;
 using Lokad.Translate.Repositories;
+using Lokad.Translate.ViewModels;
 
 namespace Lokad.Translate.Controllers
 {
@@ -16,6 +17,8 @@ namespace Lokad.Translate.Controllers
 	[AuthorizeOrRedirect(Roles = "User")]
     public class MapsController : Controller
     {
+        const string ignoredUrlTemplate = "http://www.lokad.com/ignored.ashx";
+
 		readonly ILangRepository Langs;
 		readonly IMappingRepository Mappings;
 		readonly IUpdateRepository Updates;
@@ -58,11 +61,37 @@ namespace Lokad.Translate.Controllers
 		// GET: /Mappings/List/fr
 		public ActionResult List(string id)
 		{
-			ViewData["LanguageCode"] = id;
-			return View(Mappings.List(id));
+            var user = Users.Get(User.Identity.Name);
+
+            var list = Mappings.List(id);
+
+		    var model = new MappingListViewModel
+		                    {
+                                LanguageCode = id,
+		                        Mappings = 
+                                    list.Where(m => m.DestinationUrl != ignoredUrlTemplate)
+                                    .ToList(),
+		                        IgnoredMappings = 
+                                    list
+                                    .Where(m => user.IsManager 
+                                        && m.DestinationUrl == ignoredUrlTemplate)
+                                    .ToList()
+		                    };
+
+		    return user.IsManager? View("ManagerList",model): View(model);
 		}
 
-		// GET: /Mappings/Edit/5
+        public void IgnoreMappings(int [] itemIdList)
+        {
+            foreach (var id in itemIdList)
+            {
+                var mapping = Mappings.Edit(id);
+                mapping.DestinationUrl = ignoredUrlTemplate;
+                Mappings.Update(mapping);
+            }
+        }
+
+	    // GET: /Mappings/Edit/5
 		public ActionResult Edit(long id)
 		{
 			return View(Mappings.Edit(id));

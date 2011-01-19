@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Lokad.Translate.Entities.Mapping>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Lokad.Translate.ViewModels.MappingListViewModel>" %>
 <%@ Import Namespace="Lokad.Translate"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%= Html.Encode(ViewData["LanguageCode"])%> - Pending work </h2>
+    <h2><%= Html.Encode(Model.LanguageCode)%> - Pending work </h2>
 	<p>The item that links a source page (original document) with its destination page
 	(translated document) is called a <b>mapping</b> in the Lokad.Translate terminology. 
 	The mappings that need attention are displayed in bold here below. Click the <b>Update</b>
@@ -33,7 +33,7 @@
             <th></th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% foreach (var item in Model.Mappings) { %>
 		<% if (item.Page.LastUpdated > item.LastUpdated || 
 				string.IsNullOrEmpty(item.DestinationUrl) ||
 				string.IsNullOrEmpty(item.Version)) { %>
