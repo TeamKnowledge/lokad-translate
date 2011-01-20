@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Lokad.Translate.BusinessLogic;
 using Lokad.Translate.Entities;
 using Lokad.Translate.Repositories;
+using Lokad.Translate.ViewModels;
 
 namespace Lokad.Translate.Controllers
 {
@@ -109,8 +110,15 @@ namespace Lokad.Translate.Controllers
 		public ActionResult Mappings(long id)
 		{
 			var page = _pages.Edit(id);
-			ViewData["PageUrl"] = page.Url;
-			return View(page.Mappings);
+
+		    var model = new PageMappingsViewModel
+		                    {
+		                        Id = id,
+		                        PageUrl = page.Url,
+		                        Mappings = page.Mappings
+		                    };
+
+			return View(model);
 		}
 
 		public ActionResult CreateMappings(int id)

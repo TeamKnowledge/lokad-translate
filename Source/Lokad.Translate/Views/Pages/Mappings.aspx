@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Lokad.Translate.Entities.Mapping>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Lokad.Translate.ViewModels.PageMappingsViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Mappings - Lokad.Translate
@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Mappings of <%= String.Format("<a href=\"{0}\">{0}</a>", ViewData["PageUrl"]) %></h2>
+    <h2>Mappings of <%= String.Format("<a href=\"{0}\">{0}</a>", Model.PageUrl) %></h2>
 
 	<p><%= Html.ActionLink("Back", "Index") %></p>
 	
@@ -28,7 +28,7 @@
             <th></th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% foreach (var item in Model.Mappings) { %>
     
         <tr>
             <td>
@@ -58,7 +58,7 @@
     <p>
         <%= Html.ActionLink("Create Mappings", "CreateMappings", new
 			{
-				id = ViewContext.Controller.ValueProvider["id"].RawValue
+				id = Model.Id
 			})%>
     </p>
 

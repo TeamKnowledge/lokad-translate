@@ -149,6 +149,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MvcHelpers.cs" />
     <Compile Include="ViewModels\MappingListViewModel.cs" />
+    <Compile Include="ViewModels\PageMappingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Translate.mdf" />

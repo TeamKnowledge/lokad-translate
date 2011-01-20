@@ -7,10 +7,10 @@ using Lokad.Translate.Entities;
 
 namespace Lokad.Translate.ViewModels
 {
-    public class MappingListViewModel
+    public class PageMappingsViewModel
     {
-        public string LanguageCode { get; set; }
+        public long Id { get; set; }
+        public string PageUrl { get; set; }
         public IList<Mapping> Mappings { get; set; }
-        public IList<Mapping> IgnoredMappings { get; set; }
     }
 }
