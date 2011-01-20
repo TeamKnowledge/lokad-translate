@@ -3,6 +3,7 @@
 // URL: http://www.lokad.com/
 #endregion
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
@@ -64,18 +65,24 @@ namespace Lokad.Translate.Controllers
             var user = Users.Get(User.Identity.Name);
 
             var list = Mappings.List(id);
+            
+            var ignored = new List<Mapping>();
+            var normal = new List<Mapping>();
+
+            list.Select(i =>
+		                    {
+                                if (i.DestinationUrl == ignoredUrlTemplate) 
+                                    ignored.Add(i);
+                                else normal.Add(i);
+                                return i;
+		                    })
+                            .ToList();
 
 		    var model = new MappingListViewModel
 		                    {
                                 LanguageCode = id,
-		                        Mappings = 
-                                    list.Where(m => m.DestinationUrl != ignoredUrlTemplate)
-                                    .ToList(),
-		                        IgnoredMappings = 
-                                    list
-                                    .Where(m => user.IsManager 
-                                        && m.DestinationUrl == ignoredUrlTemplate)
-                                    .ToList()
+		                        Mappings = normal.ToList(),
+		                        IgnoredMappings = ignored.ToList()
 		                    };
 
 		    return user.IsManager? View("ManagerList",model): View(model);
