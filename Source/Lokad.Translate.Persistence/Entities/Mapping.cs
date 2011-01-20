@@ -21,7 +21,7 @@ namespace Lokad.Translate.Entities
 		/// <summary>Language code.</summary>
 		public virtual string Code { get; set; }
 
-        [RegularExpression("http.*", ErrorMessage = "Url must start with http.")]
+        [RegularExpression("http://.*", ErrorMessage = "Url must start with prefix http://")]
 		public virtual string DestinationUrl { get; set; }
 
 		public virtual DateTime LastUpdated { get; set; }
