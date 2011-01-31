@@ -17,18 +17,18 @@ namespace Lokad.Translate.Repositories
 		{
 			return Session.CreateCriteria(typeof(Mapping)).SetFetchMode("Page", FetchMode.Eager)
 					.Add(Restrictions.Eq("Code", code)).List<Mapping>()
-					.OrderByDescending(m => Order(m)).ToList();
+					.OrderBy(ProcessingPriorityOrder).ToList();
 		}
 
-		public static DateTime Order(Mapping m)
+        /// <summary>
+        /// Order by priority of condition
+        /// </summary>
+		public static int ProcessingPriorityOrder(Mapping m)
 		{
-			if(m.LastUpdated < m.Page.LastUpdated ||
-				string.IsNullOrEmpty(m.DestinationUrl) ||
-				string.IsNullOrEmpty(m.Version))
-			{
-				return m.LastUpdated.AddYears(10);
-			}
-			return m.LastUpdated;
+            if (string.IsNullOrEmpty(m.DestinationUrl)) return 0;
+            if (string.IsNullOrEmpty(m.Version)) return 1;
+            if (m.Page.LastUpdated > m.LastUpdated) return 2;
+            return 3;
 		}
 
 		public void Create(Mapping mapping)
