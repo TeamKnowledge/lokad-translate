@@ -167,7 +167,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Views\Home\Setup.aspx" />
-    <Content Include="Views\Maps\ManagerList.aspx" />
+    <Content Include="Views\Maps\ExtendedList.aspx" />
     <Content Include="Views\RestRegex\Create.aspx" />
     <Content Include="Views\RestRegex\Edit.aspx" />
     <Content Include="Views\RestRegex\Index.aspx" />

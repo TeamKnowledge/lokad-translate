@@ -3,7 +3,6 @@
 // URL: http://www.lokad.com/
 #endregion
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
@@ -64,31 +63,38 @@ namespace Lokad.Translate.Controllers
 		{
             var user = Users.Get(User.Identity.Name);
 
-            var list = Mappings.List(id);
-            
-            var ignored = new List<Mapping>();
-            var normal = new List<Mapping>();
+            var list = Mappings.List(id)
+                               .Where(i => i.DestinationUrl != ignoredUrlTemplate)
+                               .ToList();
 
-            list.Select(i =>
-		                    {
-                                if (i.DestinationUrl == ignoredUrlTemplate) 
-                                    ignored.Add(i);
-                                else normal.Add(i);
-                                return i;
-		                    })
-                            .ToList();
-
-		    var model = new MappingListViewModel
+            var model = new MappingListViewModel
 		                    {
                                 LanguageCode = id,
-		                        Mappings = normal.ToList(),
-		                        IgnoredMappings = ignored.ToList()
+		                        Mappings = list.ToList(),
+                                IsManager = user.IsManager
 		                    };
 
-		    return user.IsManager? View("ManagerList",model): View(model);
+		    return View(model);
 		}
 
-        public void IgnoreMappings(int [] itemIdList)
+        public ActionResult ExtendedList(string id)
+        {
+            var user = Users.Get(User.Identity.Name);
+
+            if (!user.IsManager) return RedirectToAction("Index");
+
+            var list = Mappings.List(id);
+
+            var model = new MappingListViewModel
+            {
+                LanguageCode = id,
+                Mappings = list.ToList()
+            };
+
+            return View(model);
+        }
+
+	    public void IgnoreMappings(int [] itemIdList)
         {
             foreach (var id in itemIdList)
             {

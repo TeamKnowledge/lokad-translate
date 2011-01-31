@@ -1,11 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Lokad.Translate.ViewModels.MappingListViewModel>" %>
 <%@ Import Namespace="Lokad.Translate"%>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+<asp:Content ContentPlaceHolderID="TitleContent" runat="server">
 	Pending work - Lokad.Translate
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+
+    <%= Html.ActionLink("Pending work", "List", new {id = Model.LanguageCode}) %> » Here
+    
+    <br/>
 
     <h2><%= Html.Encode(Model.LanguageCode)%> - Pending work </h2>
 	<p>The item that links a source page (original document) with its destination page
@@ -13,36 +17,8 @@
 	The mappings that need attention are displayed in bold here below. Click the <b>Update</b>
 	button associated to a mapping to get a view of both the original and destination document.</p>
 
-    <% if (Model.IsManager)
-{	%>
-  
-  <%= Html.ActionLink("View all mapping list","ExtendedList", new {id = Model.LanguageCode}) %>
-  
-  <br/>
-  <br/>
-  
-  <input type="submit" name="name" value="Ignore selected" onclick="SubmitIgnoredItems();" />
-
-      <script type="text/javascript">
-        function SubmitIgnoredItems() {
-            var list = [];
-
-            $('input[id=ignoreFlag]:checked').each(function () {
-                list.push(this.name);
-            });
-
-            jQuery.ajaxSettings.traditional = true;​
-
-            $.post("/Maps/IgnoreMappings", { itemIdList: list }, function () { location.reload();});
-        };
-    </script>
-
-  <%
-} %>
     <table>
         <tr>
-         <% if (Model.IsManager) {%>
-            <th></th>  <%}%>
             <th></th>
             <th>
                 Source
@@ -68,14 +44,6 @@
 				string.IsNullOrEmpty(item.Version)) { %>
 		<tr style="font-weight:bold">
 		<% } else { %> <tr> <% } %>
-
-        <% if (Model.IsManager)
-{%>
-            <td>
-                <%=Html.CheckBox(item.Id.ToString(), false, new {id = "ignoreFlag"})%>
-            </td>
-            <%
-}%>
             <td>
                 <%= Html.ActionLink("Edit", "Edit", new { id = item.Id })%>
             </td>
@@ -100,6 +68,5 @@
         </tr>
         <% } %>
     </table>
-
 </asp:Content>
 

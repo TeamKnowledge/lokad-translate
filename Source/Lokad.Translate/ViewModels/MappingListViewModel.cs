@@ -11,6 +11,6 @@ namespace Lokad.Translate.ViewModels
     {
         public string LanguageCode { get; set; }
         public IList<Mapping> Mappings { get; set; }
-        public IList<Mapping> IgnoredMappings { get; set; }
+        public bool IsManager { get; set; }
     }
 }
