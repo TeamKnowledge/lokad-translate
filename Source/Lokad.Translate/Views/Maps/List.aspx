@@ -14,31 +14,13 @@
 	button associated to a mapping to get a view of both the original and destination document.</p>
 
     <% if (Model.IsManager)
-{	%>
-  
-  <%= Html.ActionLink("View all mapping list","ExtendedList", new {id = Model.LanguageCode}) %>
-  
-  <br/>
-  <br/>
-  
-  <input type="submit" name="name" value="Ignore selected" onclick="SubmitIgnoredItems();" />
+       {	%>
+    <%= Html.ActionLink("View all mapping list","ExtendedList", new {id = Model.LanguageCode}) %>
+    <br />
+    <br />
+    <%
+        } %>
 
-      <script type="text/javascript">
-        function SubmitIgnoredItems() {
-            var list = [];
-
-            $('input[id=ignoreFlag]:checked').each(function () {
-                list.push(this.name);
-            });
-
-            jQuery.ajaxSettings.traditional = true;​
-
-            $.post("/Maps/IgnoreMappings", { itemIdList: list }, function () { location.reload();});
-        };
-    </script>
-
-  <%
-} %>
     <table>
         <tr>
          <% if (Model.IsManager) {%>
@@ -100,6 +82,26 @@
         </tr>
         <% } %>
     </table>
+
+    <% if (Model.IsManager)
+       {	%>
+    <br />
+    <input type="submit" name="name" value="Ignore selected" onclick="SubmitIgnoredItems();" />
+    <script type="text/javascript">
+        function SubmitIgnoredItems() {
+            var list = [];
+
+            $('input[id=ignoreFlag]:checked').each(function () {
+                list.push(this.name);
+            });
+
+            jQuery.ajaxSettings.traditional = true;​
+
+            $.post("/Maps/IgnoreMappings", { itemIdList: list }, function () { location.reload();});
+        };
+    </script>
+    <%
+        } %>
 
 </asp:Content>
 
