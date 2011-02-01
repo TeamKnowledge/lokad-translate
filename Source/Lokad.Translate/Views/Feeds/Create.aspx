@@ -19,7 +19,7 @@
             </p>
             <p>
                 <label for="Url">Url:</label>
-                <%= Html.TextBox("Url") %>
+                <%= Html.TextBox("Url", String.Empty, new {@class= "editbox", size = 100}) %>
                 <%= Html.ValidationMessage("Url", "*") %>
             </p>
             

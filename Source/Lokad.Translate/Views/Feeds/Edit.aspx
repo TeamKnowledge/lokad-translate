@@ -31,7 +31,7 @@
             </p>
             <p>
                 <label for="Url">Url:</label>
-                <%= Html.TextBox("Url", Model.Url) %>
+                <%= Html.TextBox("Url", Model.Url, new {@class = "editbox", size = 100}) %>
                 <%= Html.ValidationMessage("Url", "*") %>
             </p>
             <p>

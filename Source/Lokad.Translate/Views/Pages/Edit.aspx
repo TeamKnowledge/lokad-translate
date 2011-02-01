@@ -6,6 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <% Html.EnableClientValidation(); %>
     <h2>Edit Page</h2>
 
     <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
@@ -31,7 +32,7 @@
             </p>
             <p>
                 <label for="Url">Url:</label>
-                <%= Html.TextBox("Url", Model.Url) %>
+                <%= Html.TextBox("Url", Model.Url, new {@class = "editbox",size = 100}) %>
                 <%= Html.ValidationMessage("Url", "*") %>
             </p>
             <p>
