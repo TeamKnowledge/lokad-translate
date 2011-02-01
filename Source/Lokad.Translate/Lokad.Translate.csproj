@@ -156,6 +156,7 @@
     <Content Include="App_Data\Translate_log.ldf">
       <DependentUpon>Translate.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Icon.ico" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
