@@ -1,0 +1,9 @@
+syntax: glob
+
+# Visual Studio
+glob:*.user
+glob:*.suo
+glob:*.cache
+glob:_ReSharper.*/
+relre:/obj/
+relre:/bin/
