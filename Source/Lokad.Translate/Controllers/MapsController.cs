@@ -64,7 +64,9 @@ namespace Lokad.Translate.Controllers
             var user = Users.Get(User.Identity.Name);
 
             var list = Mappings.List(id)
-                               .Where(i => i.DestinationUrl != ignoredUrlTemplate)
+                               .Where(i => i.DestinationUrl != ignoredUrlTemplate
+                                   // 'Page' benefits from an eager loading.
+                                            && !i.Page.IsIgnored)
                                .ToList();
 
             var model = new MappingListViewModel
