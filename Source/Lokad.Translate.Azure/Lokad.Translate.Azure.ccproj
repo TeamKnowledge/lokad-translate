@@ -35,13 +35,6 @@
     <ServiceConfiguration Include="ServiceConfiguration.cscfg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lokad.Translate.Worker\Lokad.Translate.Worker.csproj">
-      <Name>Lokad.Translate.Worker</Name>
-      <Project>{8cc16fca-2242-4a33-a907-259a1ca48487}</Project>
-      <Private>True</Private>
-      <RoleType>Worker</RoleType>
-      <RoleName>Lokad.Translate.Worker</RoleName>
-    </ProjectReference>
     <ProjectReference Include="..\Lokad.Translate\Lokad.Translate.csproj">
       <Name>Lokad.Translate</Name>
       <Project>{71640c96-3b28-4fde-b9fe-97f513e5352d}</Project>

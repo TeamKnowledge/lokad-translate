@@ -1,15 +1,9 @@
 <?xml version="1.0"?>
 <ServiceConfiguration serviceName="Lokad.Translate.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration">
-	<Role name="Lokad.Translate">
-		<Instances count="1" />
-		<ConfigurationSettings>
-			<Setting name="SqlConnectionString" value="Data Source=host;Initial Catalog=db;User Id=user;Password=pass;"/>
-		</ConfigurationSettings>
-	</Role>
-	<Role name="Lokad.Translate.Worker">
-		<Instances count="1" />
-		<ConfigurationSettings>
-			<Setting name="SqlConnectionString" value="Data Source=host;Initial Catalog=db;User Id=user;Password=pass;"/>
-		</ConfigurationSettings>
-	</Role>
+  <Role name="Lokad.Translate">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="SqlConnectionString" value="Data Source=host;Initial Catalog=db;User Id=user;Password=pass;" />
+    </ConfigurationSettings>
+  </Role>
 </ServiceConfiguration>
